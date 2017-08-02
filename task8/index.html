@@ -1,1 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>边框和背景色</title>
+    <style>
+        body {
+            position: relative;
+        }
+
+        .demo {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            /*  水平居中方法二 
+            margin: 0 auto; */
+            width: 600px;
+            text-align: center;
+        }
+
+        .page {
+            line-height: 3;
+            padding: 10px;
+            margin: 30px;
+        }
+
+        .paragraph1 {
+            border: 1px solid black;
+        }
+
+        .paragraph2 {
+            background: #fbe4e4;
+            border-right: 8px solid #e04a40;
+            border-left: 8px solid #e04a40;
+        }
+
+        .paragraph3 {
+            background: #fffcd6;
+            border-top: 8px solid #fee255;
+            border-bottom: 8px solid #fee255;
+        }
+
+        .paragraph4 {
+            background: #e9fce5;
+            border: 1px solid #5b9e4e;
+            border-bottom: 8px solid #5b9e4e;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="demo">
+        <p class="page paragraph1">加油2017，加油自己</p>
+        <p class="page paragraph2">加油2017，加油自己</p>
+        <p class="page paragraph3">加油2017，加油自己</p>
+        <p class="page paragraph4">加油2017，加油自己</p>
+    </div>
+</body>
+
+</html>

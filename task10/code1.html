@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .outer-box {
+            width: 660px;
+            height: auto;
+            margin: 30px auto;
+        }
+
+        .box {
+            box-sizing: border-box;
+            height: 100px;
+            margin: 30px;
+            padding: 15px;
+            color: white;
+            border-radius: 5px 5px;
+            position: relative;
+        }
+
+        .box p {
+            padding: 10px 0;
+        }
+
+        .box::after {
+            content: "x";
+            position: absolute;
+            top: 0.5em;
+            right: 1em;
+        }
+
+        .box1 {
+            background: #00b746;
+        }
+
+        .box2 {
+            background: #008ffb;
+        }
+
+        .box3 {
+            background: #ff2104;
+        }
+
+        .box4 {
+            background: #ff9600;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="outer-box">
+        <div class="box box1">
+            <h2>恭喜你</h2>
+            <p>获得本周学霸，继续加油吧</p>
+        </div>
+        <div class="box box2">
+            <h2>通知</h2>
+            <p>晚上上课，不要忘了</p>
+        </div>
+        <div class="box box3">
+            <h2>天啊</h2>
+            <p>竟然几天没做任务</p>
+        </div>
+        <div class="box box4">
+            <h2>警告</h2>
+            <p>学如逆水行舟，不进则退</p>
+        </div>
+    </div>
+
+</body>
+
+</html>

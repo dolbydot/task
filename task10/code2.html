@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        label {
+            vertical-align: middle;
+            padding: 5px;
+        }
+
+        .layout {
+            width: 600px;
+            margin: 20px auto;
+            box-sizing: border-box;
+            box-shadow: 0 5px 12px 0 rgba(3, 3, 3, 0.3);
+        }
+
+        h2,
+        input[type="submit"] {
+            background: #36887b;
+            color: white;
+        }
+
+        h2 {
+            padding: 15px;
+        }
+
+        .form {
+            color: #6a6a6a;
+            margin: 25px 15px;
+            ;
+        }
+
+        input[type="text"],
+        textarea {
+            display: block;
+            width: 100%;
+            border: none;
+            border-bottom: 1px solid black;
+            padding: 8px 0;
+        }
+
+        input[type="text"]:focus,
+        textarea:focus {
+            outline: none;
+        }
+
+        .checkbox,
+        .radio {
+            box-sizing: border-box;
+            width: 50%;
+            padding: 15px 0;
+            float: left;
+            line-height: 1.4;
+        }
+
+        .submit {
+            clear: both;
+        }
+
+        input[type="submit"] {
+            width: 60px;
+            padding: 8px 16px;
+            border: none;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="layout">
+        <h2>信息收集表</h2>
+        <form action="" class="form">
+
+            <div class="message">
+                <label>姓名</label><br />
+                <input type="text" name="name" id="name" /><br />
+                <label>QQ</label><br />
+                <input type="text" name="qq" id="qq" /><br />
+                <label>要说的话</label><br />
+                <textarea id="content" cols="30" rows="4"></textarea>
+            </div>
+
+            <div class="float-box">
+
+                <div class="checkbox">
+                    <input type="checkbox" name="drink" id="milk" checked>
+                    <label>Milk</label><br />
+                    <input type="checkbox" name="drink" id="sugar">
+                    <label>Sugar</label><br />
+                    <input type="checkbox" name="drink" id="milk">
+                    <label>Lemon</label>
+                </div>
+
+                <div class="radio">
+                    <input type="radio" name="sex" id="male" checked>
+                    <label>Male</label><br />
+                    <input type="radio" name="sex" id="female">
+                    <label>Female</label>
+                </div>
+
+            </div>
+            <div class="submit">
+                <input type="submit" value="提交">
+            </div>
+        </form>
+    </div>
+
+
+</body>
+
+</html>

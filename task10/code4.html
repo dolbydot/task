@@ -7,12 +7,26 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-        nav {
+        * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
+        }
+
+        .topbar {
             width: 600px;
-            margin: 5px auto;
+            margin: 10px auto;
             background: #efefef;
+        }
+
+        .topbar,
+        ul {
             box-shadow: 0 3px 6px 0 rgba(3, 3, 3, 0.3);
+        }
+
+        a:hover,
+        li:hover {
+            background: #c5c5c5;
         }
 
         a {
@@ -20,18 +34,43 @@
             text-decoration: none;
             color: black;
             line-height: 40px;
-            margin: 0 12px;
+        }
+
+        a,
+        li {
+            padding: 0 1em;
+        }
+
+        ul {
+            display: none;
+            list-style: none;
+            transform: translateX(-1em);
+            position: absolute;
+            background: white;
+            min-width: 160px;
+        }
+
+        a:hover ul {
+            display: block;
         }
     </style>
 </head>
 
 <body>
     <nav class="topbar">
+
         <a href="#">首页</a>
         <a href="#">作品</a>
-        <a href="#">更多</a>
-    </nav>
+        <a href="#">
+            更多
+            <ul>
+                <li>Github</li>
+                <li>博客</li>
+                <li>知乎</li>
+            </ul>
+        </a>
 
+    </nav>
 </body>
 
 </html>

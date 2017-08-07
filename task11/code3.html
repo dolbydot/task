@@ -10,7 +10,6 @@
         * {
             padding: 0;
             margin: 0;
-            box-sizing: border-box;
         }
 
         .container {
@@ -22,6 +21,11 @@
             transform: translate(-50%, -50%);
         }
 
+        .container::after {
+            content: "";
+            clear: both;
+        }
+
         .aside-nav {
             width: 200px;
             min-height: 400px;
@@ -30,24 +34,28 @@
         }
 
         .main {
-            margin-left: 210px;
+            margin-left: 10px;
+            width: 580px;
             min-height: 600px;
             background: yellow;
+            float: left;
+        }
+
+        .ad {
+            width: 200px;
+            min-height: 500px;
+            float: right;
+            background: greenyellow;
         }
     </style>
 </head>
 
 <body>
-    
     <div class="container">
         <div class="aside-nav"></div>
         <div class="main"></div>
-
-
-
-
-
-
+        <div class="ad"></div>
+    </div>
 </body>
 
 </html>

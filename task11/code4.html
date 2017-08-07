@@ -35,6 +35,8 @@
         .outer-container::after {
             content: "";
             clear: both;
+            /*  伪元素默认display值为inline-block，所以在伪元素上清除浮动将display值设为block比较稳妥  */
+            display: block;
         }
 
         h1 {

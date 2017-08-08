@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>圣杯布局</title>
+    <style>
+        .outer-container {
+            padding-left: 110px;
+            padding-right: 160px;
+        }
+
+        .outer-container::after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .main {
+            float: left;
+            height: 500px;
+            background: yellow;
+            width: 100%;
+        }
+        /*  两侧边栏要和main在同一行，现在同一行左边，负margin-left为-100%，想在同一行右边，负margin-left值为负自身宽度。  */
+
+        .left {
+            float: left;
+            width: 100px;
+            background: pink;
+            height: 300px;
+            margin-left: -100%;
+            position: relative;
+            left: -110px;
+        }
+
+        .right {
+            float: left;
+            width: 150px;
+            background: blue;
+            height: 400px;
+            margin-left: -150px;
+            position: relative;
+            right: -160px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="outer-container">
+        <!-- main一定要放在最前面（奇葩） -->
+        <div class="main">main</div>
+        <div class="left">left</div>
+        <div class="right">right</div>
+    </div>
+</body>
+
+</html>

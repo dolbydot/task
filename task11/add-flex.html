@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        .outer-container {
+            background: #cdcdcd;
+            display: flex;
+        }
+
+        .aside {
+            width: 100px;
+            background: pink;
+            min-height: 300px;
+            order: 1;
+            /*  宽高不收缩，宽高到最小宽高以下出现滚动条  */
+            flex-shrink: 0;
+        }
+
+        .ad {
+            width: 150px;
+            background: yellow;
+            min-height: 400px;
+            order: 3;
+            flex-shrink: 0;
+        }
+
+        .main {
+            background: yellowgreen;
+            min-height: 500px;
+            min-width: 500px;
+            flex-shrink: 0;
+            flex-grow: 1;
+            order: 2;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="outer-container">
+        <div class="aside">aside</div>
+        <div class="ad">ad</div>
+        <div class="main">main</div>
+    </div>
+</body>
+
+</html>

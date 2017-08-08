@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .outer-container {
+            width: 820px;
+        }
+
+        .outer-container::after {
+            content: "";
+            clear: both;
+            /*  伪元素默认display值为inline-block，所以在伪元素上清除浮动将display值设为block比较稳妥  */
+            display: block;
+        }
+
+        .outer-container,
+        img,
+        p {
+            margin: 0 auto;
+        }
+
+        p,
+        h1 {
+            text-align: center;
+        }
+
+        p {
+            line-height: 4;
+        }
+
+        h1 {
+            border-bottom: 1px solid #cdcdcd;
+            color: #666;
+            margin: 20px auto;
+            padding-bottom: 10px;
+        }
+
+        .card {
+            list-style: none;
+            margin: 30px 0 4px 10px;
+            float: left;
+            box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="outer-container">
+        <h1>风景列表</h1>
+
+        <li class="card">
+            <img src="http://tu.duotoo.com/uploads/tu/sl3/erv2ihfxmth.jpg" alt="">
+            <p>风景如画</p>
+        </li>
+        <li class="card">
+            <img src="http://tu.duotoo.com/uploads/tu/sl3/erv2ihfxmth.jpg" alt="">
+            <p>风景如画</p>
+        </li>
+        <li class="card">
+            <img src="http://tu.duotoo.com/uploads/tu/sl3/erv2ihfxmth.jpg" alt="">
+            <p>风景如画</p>
+        </li>
+        <li class="card">
+            <img src="http://tu.duotoo.com/uploads/tu/sl3/erv2ihfxmth.jpg" alt="">
+            <p>风景如画</p>
+        </li>
+        <li class="card">
+            <img src="http://tu.duotoo.com/uploads/tu/sl3/erv2ihfxmth.jpg" alt="">
+            <p>风景如画</p>
+        </li>
+        <li class="card">
+            <img src="http://tu.duotoo.com/uploads/tu/sl3/erv2ihfxmth.jpg" alt="">
+            <p>风景如画</p>
+        </li>
+
+    </ul>
+</body>
+
+</html>

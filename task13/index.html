@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .demo {
+            width: 200px;
+            height: 100px;
+            border: 1px solid #cdcdcd;
+            margin: 20px 25px;
+        }
+
+        .demo1::before {
+            content: '';
+            display: block;
+            width: 0;
+            height: 0;
+            margin-left: 10px;
+            margin-top: -20px;
+            border: 10px solid transparent;
+            border-bottom-color: #cdcdcd;
+        }
+
+        .demo2::before {
+            content: '';
+            display: block;
+            width: 0;
+            height: 0;
+            margin-left: 180px;
+            border-left: 20px solid transparent;
+            border-top: 20px solid red;
+        }
+
+        .demo3::before {
+            content: '';
+            display: block;
+            background: white;
+            width: 10px;
+            height: 10px;
+            margin-left: 10px;
+            margin-top: -7.07px;
+            /* -10/根号2 */
+            border-left: 1px solid #cdcdcd;
+            border-top: 1px solid #cdcdcd;
+            transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            /* Internet Explorer */
+            -moz-transform: rotate(45deg);
+            /* Firefox */
+            -webkit-transform: rotate(45deg);
+            /* Safari 和 Chrome */
+            -o-transform: rotate(45deg);
+            /* Opera */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="demo demo1"></div>
+    <div class="demo demo2"></div>
+    <div class="demo demo3"></div>
+</body>
+
+</html>

@@ -8,56 +8,59 @@
     <title>我的项目</title>
     
     <style>
-        body,
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6,
-        p,
-        ul,
-        li,
-        dl,
-        dt,
-        dd {
+        * {
             margin: 0;
             padding: 0;
-        }
-
-        a {
-            text-decoration: none;
+            font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "\5FAE\8F6F\96C5\9ED1", "STHeiti", "WenQuanYi Micro Hei", sans-serif;
         }
 
         body {
-            font-family: Arial, Helvetica, sans-serif;
             font-size: 14px;
             color: #555;
-            line-height: 2;
             text-align: center;
             background: #fdefdf;
         }
 
         h1 {
             color: #7e8a83;
+            font-size: 3em;
+            margin-top: 10px;
         }
 
         p {
             color: #afb3a8;
+            margin-top: 30px;
         }
 
         .btn {
             display: inline-block;
             background: #76ab87;
             color: #fff;
-            line-height: 1;
-            padding: 5px;
-            margin: 10px 5px;
+            text-decoration: none;
+            width: 60px;
+            line-height: 25px;
+            padding: 5px 0;
+            margin: 40px 5px;
             border-radius: 5px;
+            text-align: center;
+        }
+
+        .tabs .btn:first-child {
+            background: #a8c5a9;
+        }
+
+        .btn:hover,
+        .tabs .btn:first-child:hover {
+            background: #8eb898;
         }
 
         .cover {
-            width: 300px;
+            width: 400px;
+            vertical-align: middle;
+        }
+
+        .action .btn {
+            width: 80px;
         }
 
         .author a {

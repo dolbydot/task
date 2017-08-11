@@ -1,370 +1,495 @@
-* {
-    /* border: 1px solid red;       */
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
-
-/*  wordart——公用样式只设置font-family，其他的单独设置  */
-
-.wordart1 {
-    min-width: 200px;
-    font-size: 1.5em; 
-    font-family: "Kaushan Script","Helvetica Neue",Helvetica,Arial,cursive;
-}
-
-.wordart2,.btn1 {
-    font-family: "Helvetica Neue",Helvetica,Arial,cursive;
-    font-weight: bolder;  
-}
-
-.nav-bar1 .wordart2{
-    font-weight: normal;
-}
-
-.wordart3 {
-    /* font-family: monospace "Kaushan Script","Helvetica Neue",Helvetica,Arial,cursive;  */
-    font-family:  "Droid Serif","Kaushan Script",Helvetica,Arial,cursive;
-}
-
-.food p{
-    /* font-family: "Roboto Slab","Droid Serif","Kaushan Script",Helvetica,Arial,cursive; */
-}
-
-ul,
-ol {
-    list-style: none;
-}
-
-a {
-    text-decoration: none;
-}
-/*  page-one  */
-
-.header1,
-.nav-bar1 {
-    display: flex;
-}
-
-a,
-#page-one,
-.btn1 {
-    color: white;
-}
-
-.container1 {
-    height: 100%;
-    background: black;
-    opacity: .8;
-}
-
-#page-one {
-    background: url(./photo/page1-bg.jpg) no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    height: 900px;
-}
-
-#page-one::before,
-#page-one::after {
-    content: '';
-    display: block;
-    clear: both;
-}
-
-.header1 {
-    position: fixed;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 0;
-    justify-content: space-between;
-    width: 100%;
-    padding: 1em 5em;
-    z-index: 1000; 
-    line-height: 3; 
-}
-
-.wordart1,
-a:hover {
-    color: #f8c74e;
-}
-
-.nav-bar1 {
-    justify-content: flex-end;
-     line-height: 4.5;
-      /*  要实现header1里的.wordart1和.wordart2在字体大小变化时水平对齐并在在父元素中垂直居中，只需遵循以下公式：.wordart1_font-size*.header1_line-height=.wordart2_line-height  */
-}
-
-.nav-bar1 li {
-    padding-left: 1.5em;
-}
-
-.main1 {
-    width: 90%;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-}
-
-.main1 h1 {
-    font-size: 2.5em;
-}
-
-.main1 p {
-    font-size: 4em;
-    margin-top: .5em;
-}
-
-.btn1 {
-    background: #f8c74e;
-    font-size: 20px;
-    padding: 20px 40px;
-    margin-top: 3em;
-    border-radius: 5px;
-    border: none;
-}
-
-.btn1:hover {
-    background: #f7ba3e;
-}
-
-
-
-
-/*  page-two  */
-
-@font-face {
-    font-family: 'iconfont';
-    /* project id 381278 */
-    src: url('//at.alicdn.com/t/font_381278_uremgfi6ipj2x1or.eot');
-    src: url('//at.alicdn.com/t/font_381278_uremgfi6ipj2x1or.eot?#iefix') format('embedded-opentype'),
-    url('//at.alicdn.com/t/font_381278_uremgfi6ipj2x1or.woff') format('woff'),
-    url('//at.alicdn.com/t/font_381278_uremgfi6ipj2x1or.ttf') format('truetype'),
-    url('//at.alicdn.com/t/font_381278_uremgfi6ipj2x1or.svg#iconfont') format('svg');
-}
-
-.icon {
-    font-family: "iconfont" !important;
-    font-size: 80px;
-    position: relative;
-    top: 5px;
-    left: 1px;
-    font-style: normal;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-.icon1 {
-    color: yellow;
-}
-
-.icon2 {
-    color: red;
-}
-
-.icon3 {
-    color: yellowgreen;
-}
-
-#page-two {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-    min-height: 900px;
-    text-align: center;
-}
-
-.header2 {
-    margin-top: 200px;
-}
-
-.header2 p {
-    margin: 20px auto;
-}
-
-.main2 {
-    flex-grow: 1;
-    margin-top: 50px;
-    width: 90%;
-}
-
-.container2 {
-    display: flex;
-    justify-content: space-around;
-    align-content: center;
-    /* flex-wrap: wrap;  */
-    /* align-items: center; */
-    /* flex-wrap: wrap;  */
-}
-
-.food {
-    width: 33.3333333%;
-    min-width: 150px;
-    margin-left: 4em; 
-    margin-right: 4em; 
-}
-
-.food div {
-    display: inline-block;
-    height: 100px;
-    width: 100px;
-    background: #f8c74e;
-    border-radius: 50%; 
-}
-
-.food h3 {
-    margin: 20px auto;
-}
-
-
-
-/*  page-three  */
-
-#page-three {
-    background: #efefef;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-    min-height: 1000px;
-    text-align: center;
-}
-
-.header3 h1 {
-    margin-top: 100px;
-}
-
-.header3 p {
-    margin-top: 10px;
-}
-
-.card h3 {
-    padding-top: 20px;
-}
-
-.card p {
-    padding-top: 5px;
-    padding-bottom: 20px;
-}
-
-.main3 {
-    width: 60%;
-    margin-top: 50px;
-}
-
-.container3 {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
-}
-
-.main3 .card {
-    margin-bottom: 40px;
-    box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.card p,.card h3{
-    background: #f8c74e;
-}
-
-.page3-photo {
-    vertical-align: top;
-}
-
-.page3-photo:hover{
-    opacity: .2;  
-}
-
-
-/*  page-four  */
-#page-four {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-    min-height: 1300px;
-    text-align: center;
-}
-
-.header4 h1 {
-    margin-top: 100px;
-}
-
-.header4 p {
-    margin-top: 10px;
-}
-
-.main4 .pic {
-    position: relative;
-    padding-bottom: 150px; 
-    top:100px;
-}
-
-.main4 .pic::before {
-    content: '';
-    display: block;
-    position: absolute;
-    width: 138px;
-    height: 138px;
-    border-radius: 50%;
-    border:6px solid #efefef;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 2;   
-    
-}
-
-.main4 .pic::after {
-    content: '';
-    display: block;
-    position: absolute;
-    height: 100%;
-    top: 110px;
-    left: 71px;
-    border-left: 3px solid #efefef;
-    z-index: -1;
-}
-
-.main4 .pic:last-child::after {
-    display: none;
-}
-
-.main4 .pic:last-child{
-    margin-bottom:100px;
-}
-
-.page4-photo{
-    width: 145px;
-    height: 145px;
-    border-radius: 50%;
-    border: none;
-}
-
-.story{
-    position: absolute;
-    width: 400px; 
-    height: 150px;
-    top: 30px;
-}
-
-.odd{
-    left: -500px;
-    text-align: right;
-    margin-left: 50px;
-}
-
-.even{
-    right: -500px;
-    text-align: left;
-    margin-right: 50px;
-}
-
-
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        /*  wordart——公用样式只设置font-family，其他的单独设置  */
+
+        @font-face {
+            font-family: 'iconfont';
+            src: url('//at.alicdn.com/t/font_381278_8mr7mpp4r3aw0zfr.eot');
+            src: url('//at.alicdn.com/t/font_381278_8mr7mpp4r3aw0zfr.eot?#iefix') format('embedded-opentype'),
+            url('//at.alicdn.com/t/font_381278_8mr7mpp4r3aw0zfr.woff') format('woff'),
+            url('//at.alicdn.com/t/font_381278_8mr7mpp4r3aw0zfr.ttf') format('truetype'),
+            url('//at.alicdn.com/t/font_381278_8mr7mpp4r3aw0zfr.svg#iconfont') format('svg');
+        }
+
+        .icon {
+            font-family: "iconfont" !important;
+            font-style: normal;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .iconfont1 {
+            font-size: 80px;
+            top: 5px;
+            left: 1px;
+        }
+
+        .iconfont2 {
+            font-size: 40px;
+            margin-left: 7.5px;
+            margin-right: 7.5px;
+        }
+
+        .icon1 {
+            color: yellow;
+        }
+
+        .icon2 {
+            color: red;
+        }
+
+        .icon3 {
+            color: yellowgreen;
+        }
+
+        .wordart1 {
+            min-width: 200px;
+            font-size: 1.5em;
+            font-family: "Kaushan Script", "Helvetica Neue", Helvetica, Arial;
+        }
+
+        .wordart2,
+        .btn1 {
+            font-family: "Helvetica Neue", Helvetica, Arial;
+            font-weight: bolder;
+        }
+
+        .nav-bar1 .wordart2 {
+            font-weight: normal;
+        }
+
+        .wordart3 {
+            font-family: "Droid Serif", "Kaushan Script", Helvetica, Arial;
+        }
+
+        ul,
+        ol {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .header1,
+        .nav-bar1,
+        #page-two,
+        #page-three,
+        #page-four,
+        #page-five,
+        #page-six,
+        .container2,
+        .container3,
+        .container5,
+        form,
+        div.input,
+        footer {
+            display: flex;
+        }
+
+        .header1,
+        .nav-bar1,
+        form,
+        footer {
+            flex-wrap: wrap;
+        }
+
+        a,
+        #page-one,
+        .btn1,
+        #page-six {
+            color: white;
+        }
+
+        .container1,
+        .main4 .pic::after,
+        textarea,
+        div.input {
+            height: 100%;
+        }
+
+        .container1 {
+            background: black;
+            opacity: .8;
+        }
+
+        #page-one {
+            background: url(./photo/page1-bg.jpg) no-repeat center center;  
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            height: 900px; 
+        }
+
+        .header1,
+        .main4 .pic::before {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .header1,
+        .main5{
+            width: 100%;
+        }
+
+        .header1,
+        footer{
+            justify-content: space-between;
+        }
+
+        .header1 {
+            position: fixed;
+            top: 0;
+            padding: 1em 5em;
+            z-index: 3;
+            line-height: 2;
+        }
+
+        .nav-bar1 {
+            justify-content: flex-end;
+            line-height: 3;
+            /*  要实现header1里的.wordart1和.wordart2在字体大小变化时水平对齐并在在父元素中垂直居中，只需遵循以下公式：.wordart1_font-size*.header1_line-height=.wordart2_line-height  */
+        }
+
+        .nav-bar1 li {
+            padding-left: 1.5em;
+        }
+
+        .main1,
+        .main2{
+            width: 90%;
+        }
+
+        .main1,
+        .container6{
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .main1 h1 {
+            font-size: 2.5em;
+        }
+
+        .main1 p {
+            font-size: 4em;
+            margin-top: .5em;
+        }
+
+        .btn1 {
+            font-size: 20px;
+            padding: 20px 40px;
+            margin-top: 3em;
+        }
+
+        .btn1:hover {
+            background: #f7ba3e;
+        }
+
+        #page-two,
+        #page-five {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+            min-height: 900px;
+            text-align: center;
+        }
+
+        .header2 {
+            margin-top: 200px;
+        }
+
+        .header2 p,
+        .food h3 {
+            margin: 20px auto;
+        }
+
+        .main2,
+        .main3,
+        .main5{
+            margin-top: 50px;
+        }
+
+        .main2,
+        input {
+            flex-grow: 1;   
+        }
+
+        .container2,
+        .container3,
+        form{
+            justify-content: space-around;
+        }
+
+        .container2,
+        #page-three,
+        #page-four,
+        form { 
+            align-content: center;
+        }
+
+        .food {
+            width: 33.3333333%;
+            min-width: 150px;
+            margin-left: 4em;
+            margin-right: 4em;
+        }
+
+        .food div,
+        .card p,
+        .card h3,
+        .btn1{
+            background: #f8c74e;
+        }
+
+        .food div,
+        .main4 .pic::before,
+        .page4-photo,
+        .page5-photo{
+            border-radius: 50%;
+        }
+
+        .food div {
+            display: inline-block;
+            height: 100px;
+            width: 100px;
+        }
+
+        #page-three,
+        #page-five{
+            background: #efefef;
+        }
+
+        #page-three,
+        #page-four{
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        #page-three {    
+            min-height: 1000px;
+        }
+
+        .header3 h1,
+        .header4 h1,
+        .header5 h1 {
+            margin-top: 100px;
+        }
+
+        .header3 p,
+        .header4 p,
+        .header5 p,
+        .header6 p{
+            margin-top: 10px;
+        }
+
+        .card h3,
+        .team h3 {
+            padding-top: 20px;
+        }
+
+        .card p {
+            padding-top: 5px;
+            padding-bottom: 20px;
+        }
+
+        .main3,
+        .footer5 {
+            width: 1000px;
+            margin-bottom: 100px;
+        }
+
+        .container3,
+        .container5 {
+            flex-flow: row wrap;
+        }
+
+        .main3 .card,
+        .main5 .team{
+            margin-bottom: 40px;
+        }
+
+        .main3 .card {  
+            box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        .page3-photo,
+        .page5-photo {
+            vertical-align: top;
+        }
+
+        .page3-photo:hover {
+            opacity: .2;
+        }
+
+        #page-four {
+            min-height: 1300px;
+        }
+
+        .main4 .pic,
+        #page-six,
+        .icon{
+            position: relative;
+        }
+
+        .main4 .pic {
+            padding-bottom: 150px;
+            top: 100px;
+        }
+
+        .main4 .pic::before,
+        .main4 .pic::after {
+            content: '';
+            display: block;
+            position: absolute;
+        }
+
+        .main4 .pic::before {
+            width: 138px;
+            height: 138px;
+            border: 6px solid #efefef;
+            z-index: 2;
+        }
+
+        .main4 .pic::after {
+            top: 110px;
+            left: 71px;
+            border-left: 3px solid #efefef;
+            z-index: -1;
+        }
+
+        .main4 .pic:last-child::after {
+            display: none;
+        }
+
+        .main4 .pic:last-child {
+            margin-bottom: 100px;
+        }
+
+        .page4-photo,
+        .btn1,
+        input,
+        textarea {
+            border: none;
+        }
+
+        .page4-photo {
+            width: 145px;
+            height: 145px;   
+        }
+
+        .story {
+            position: absolute;
+            width: 400px;
+            height: 150px;
+            top: 30px;
+        }
+
+        .odd {
+            left: -500px;
+            text-align: right;
+            margin-left: 50px;
+        }
+
+        .even {
+            right: -500px;
+            text-align: left;
+            margin-right: 50px;
+        }
+
+        .team p {
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+        .container5 {
+            justify-content: center;
+        }
+
+        .team {
+            margin: 75px;
+        }
+
+        .page5-photo {
+            width: 250px;
+            height: 250px;
+            border: 6px solid white;
+        }
+
+        .icon a {
+            color: black;
+        }
+
+        .wordart1,
+        a:hover,
+        footer p a {
+            color: #f8c74e;
+        }
+
+        #page-six {
+            background: url(./photo/page6-bg.jpg) no-repeat center center;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover; 
+            height: 900px;
+            text-align: center;
+        }
+
+        .header6 {
+            min-width: 1200px;
+        }
+
+        form {
+            align-items: center;
+            margin: 70px;
+            margin-bottom: 30px;
+            height: 280px;
+        }
+
+        div.input {
+            flex-direction: column;
+            width: 50%;   
+        }
+
+        input,
+        textarea,
+        .btn1 {
+            border-radius: 5px;
+        }
+
+        input,
+        textarea {    
+            padding: 15px;
+        }
+
+        input{
+            margin-bottom: 30px;
+        }
+
+        input:last-child {
+            margin-bottom: 0;
+        }
+
+        .main6 button {
+            margin-top: 0;
+        }
+
+        footer {
+            min-width: 300px;
+            line-height: 50px;
+            margin: 2px 200px;
+        }
+
+        footer p:last-child :last-child {
+            margin-left: 20px;
+        }

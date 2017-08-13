@@ -7,11 +7,11 @@
 
         @font-face {
             font-family: 'iconfont';
-            src: url('//at.alicdn.com/t/font_381278_8mr7mpp4r3aw0zfr.eot');
-            src: url('//at.alicdn.com/t/font_381278_8mr7mpp4r3aw0zfr.eot?#iefix') format('embedded-opentype'),
-            url('//at.alicdn.com/t/font_381278_8mr7mpp4r3aw0zfr.woff') format('woff'),
-            url('//at.alicdn.com/t/font_381278_8mr7mpp4r3aw0zfr.ttf') format('truetype'),
-            url('//at.alicdn.com/t/font_381278_8mr7mpp4r3aw0zfr.svg#iconfont') format('svg');
+            src: url('./icon/iconfont.eot');
+            src: 
+            url('./icon/iconfont.woff') format('woff'),
+            url('./icon/iconfont.ttf') format('truetype'),
+            url('./icon/iconfont.svg#iconfont') format('svg');
         }
 
         .icon {

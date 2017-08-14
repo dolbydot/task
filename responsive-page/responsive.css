@@ -1,0 +1,160 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    color: blue;
+    text-decoration: underline;
+}
+
+body {
+    padding: 20px;
+    font-size: .8em;
+    font-family: fantasy, monospace, Arial, Helvetica, sans-serif;
+}
+
+header,
+nav,
+main,
+aside,
+footer {
+    border: 1px solid black;
+    padding: 20px;
+    height: 100%;
+}
+
+header {
+    background: #e9d9d9;
+}
+
+nav {
+    background: #eceada;
+}
+
+main {
+    background: #dce9d9;
+}
+
+aside {
+    background: #dbebeb;
+}
+
+footer {
+    background: #d8d9ea;
+}
+
+.layout {
+    margin: 20px auto;
+}
+
+.secondary-menu {
+    text-indent: 3em;
+}
+
+.how-to-use,
+.whats-responsive {
+    border-bottom: 1px solid black;
+    padding-bottom: 20px;
+}
+
+.card,
+.whats-responsive {
+    margin-top: 20px;
+}
+
+.information {
+    margin-bottom: 20px;
+}
+
+.information:last-child {
+    margin-bottom: 0;
+}
+
+aside .card:first-child {
+    margin: 0;
+}
+
+.card,
+.whats-responsive {
+    display: flex;
+}
+
+img.headshot,
+img.layout-pic {
+    margin-right: 20px;
+    width: 15%;
+    height: 15%;
+}
+
+.layout-pic,
+aside img {
+    display: none;
+}
+
+@media (min-width:960px) {
+    .layout {
+    display: flex;
+    }
+
+    nav,
+    main,
+    aside {
+    flex-grow: 1;
+    }
+
+    nav {
+    width: 28%;
+    }
+
+    main {
+    margin-left: 20px;
+    margin-right: 20px;
+    }
+
+    .pic1 {
+    display: block;
+    }
+}
+
+@media (min-width:720px) and (max-width:959px) {
+    nav {
+    float: left;
+    width: 20%;
+    margin-right: 20px;
+    }
+
+    main {
+    float: right;
+    width: calc(80vw - 52px);
+    margin-bottom: 20px;
+    }
+
+    aside {
+    clear: both;
+    }
+    .pic2,
+    aside img {
+    display: block;
+    }
+}
+
+@media (max-width:719px) {
+    main {
+    margin: 20px auto;
+    }
+    .pic3,
+    aside img {
+    display: block;
+    }
+}

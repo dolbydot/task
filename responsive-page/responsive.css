@@ -136,7 +136,7 @@ aside img {
 
     main {
     float: right;
-    width: 77%;
+    width: calc(80%-20px);
     margin-bottom: 20px;
     }
 

@@ -195,14 +195,22 @@ IE9、Opera、Firefox、Chrome、Safari都支持DOM事件流，IE8及更早版�
 
     firstBtn.addEventListener('click', function () {
       var addLi = document.createElement('li');
-      addLi.innerText = content.value;
-      ul.insertBefore(addLi, ul.firstChild);
+      if (content.value.length == 0) {
+        alert('请输入内容');
+      } else {
+        addLi.innerText = content.value;
+        ul.insertBefore(addLi, ul.firstChild);
+      }
     }, false);
 
     lastBtn.addEventListener('click', function () {
       var addLi = document.createElement('li');
-      addLi.innerText = content.value;
-      ul.appendChild(addLi);
+      if (content.value.length == 0) {
+        alert('请输入内容');
+      } else {
+        addLi.innerText = content.value;
+        ul.appendChild(addLi);
+      }
     }, false);
 
     ul.addEventListener('click', function (e) {

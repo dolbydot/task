@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0 2px;
+            box-sizing: border-box;
+        }
+
+        #ct li,
+        #load-more {
+            display: block;
+            line-height: 30px;
+            margin: 10px auto;
+            padding: 5px 10px;
+        }
+
+        #ct li {
+            list-style: none;
+            border: 1px solid #ccc;
+        }
+
+        #ct li:hover {
+            background: #ccc;
+            color: white;
+        }
+
+        #load-more {
+            color: red;
+            text-decoration: none;
+            border: 1px solid red;
+            border-radius: 5px;
+            width: 100px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <ul id="ct">
+        <li>内容1</li>
+        <li>内容2</li>
+    </ul>
+    <a href="#" id="load-more" class="btn">
+        加载更多
+    </a>
+    
+    <script>
+        var ct = document.querySelector('#ct')
+        var btn = document.querySelector('#load-more')
+        var pageIndex = 3;
+
+        var isDataArrive = true
+
+        btn.addEventListener('click', function (e) {
+            //取消a链接默认跳转到页面顶部的事件，直接将a标签內href的值改为javascript:void(0)也可，即href值为undefined
+            e.preventDefault()
+
+            if (!isDataArrive) {
+                return
+            }
+
+            var xhr = new XMLHttpRequest()
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200 || xhr.status === 304) {
+                        var results = JSON.parse(xhr.responseText)
+                        console.log(results);
+                        var fragment = document.createDocumentFragment()
+                        for (var i = 0; i < results.length; i++) {
+                            var node = document.createElement('li')
+                            node.innerText = results[i]
+                            fragment.appendChild(node)
+                        }
+                        ct.appendChild(fragment)
+                        pageIndex = pageIndex + 5
+                    } else {
+                        alert('出错了')
+                    }
+                    isDataArrive = true
+                }
+            }
+
+            xhr.open('get', '/loadMore?index=' + pageIndex + '&length=5', true)
+            xhr.send()
+            isDataArrive = false
+        })
+
+    </script>
+</body>
+
+</html>

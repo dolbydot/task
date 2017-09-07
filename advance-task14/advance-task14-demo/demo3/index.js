@@ -1,8 +1,4 @@
-//不用jquery写的话，在cover上添加一个display:none;，在css添加一个class选择器，将display设为block，再通过jquery将class绑定或者移除，同样可以实现效果，方法有多种，以下最简洁。
-$('#outer-ct>.main>.section>.cover').hide();
-$('#outer-ct>.main>.section').on('mouseenter mouseleave', function () {
-    $(this).find('.cover').toggle()
-})
+
 
 var products = [
     {
@@ -20,7 +16,7 @@ var products = [
     }
 ];
 
-function addProd(prod) {
+function addProd(products) {
     var html = ''
     html += '<li class="section">'
     html += '<img src="' + products.img + '" alt="">'
@@ -39,7 +35,12 @@ $('.loadMore').on('click', function (e) {
     })
 })
 
-
+//事件代理，用添加class的法官法，避免了重复为新添加项绑定事件
+$('.main').on('mouseenter', '.section', function (e) {
+    $(this).find('.cover').addClass('hover')
+}).on('mouseleave', '.section', function (e) {
+    $(this).find('.cover').removeClass('hover')
+})
 
 
 

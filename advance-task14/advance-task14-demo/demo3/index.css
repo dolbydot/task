@@ -36,7 +36,6 @@ h2{
     justify-content: space-between;
     flex-wrap: wrap;
     align-content: space-between;
-    border: 1px solid #eee; 
 }
 
 #outer-ct .main .section{
@@ -59,6 +58,11 @@ h2{
     bottom: 0;
     right: 0;
     background: rgba(0, 0, 0, .3);
+    display: none;
+}
+
+#outer-ct .main .section .cover.hover{
+    display: block;
 }
 
 #outer-ct .main .section .cover>.btn{

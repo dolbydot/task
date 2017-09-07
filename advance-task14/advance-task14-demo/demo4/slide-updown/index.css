@@ -1,0 +1,83 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;  
+}
+
+ul,li{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+#outer-ct{
+    width: 600px; 
+    margin: 20px auto;
+    border: 1px solid #ccc;
+}
+
+#outer-ct .tab{
+    overflow: hidden;
+    border-bottom: 1px solid #ccc;
+    line-height: 40px;
+    text-align: center;
+}
+
+#outer-ct .tab::before,
+#outer-ct .tab::after{
+    content: '';
+    display: block;
+    clear: both;
+}
+
+#outer-ct .tab>li{
+    float: left;
+    width: 33.33%;
+    cursor: pointer;
+    background: white;
+}
+
+#outer-ct .tab>li:not(:last-child){
+    border-right: 1px solid #ccc;
+}
+
+#outer-ct .tab>li.active{
+    background: #ccc;
+}
+
+#outer-ct .wrap{
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+
+#outer-ct .wrap .content{
+    position: absolute;
+    width: 100%;
+      /* top: -30px;   */
+}
+
+#outer-ct .content>li{
+    height: 200px; 
+    padding: 10px;
+    z-index: -1;
+}
+
+#outer-ct .content>li:first-child{
+    background: pink;
+}
+
+#outer-ct .content>li:nth-child(2){
+    background: yellowgreen;
+}
+
+#outer-ct .content>li:last-child{
+    background: #abcdef;
+}
+
+#outer-ct .content>li.active{
+    display: block;
+}
+

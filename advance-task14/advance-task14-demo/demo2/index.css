@@ -1,0 +1,108 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-size: .8em;
+}
+
+ul,li{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+#outer-ct{
+    width: 650px; 
+    margin: 20px;
+    text-align: center;
+}
+
+#outer-ct .navbar{
+    width: 180px; 
+    display: flex;
+    justify-content: space-around;
+    border: 1px solid #ccc;
+}
+
+#outer-ct .navbar>li{
+    flex-grow: 1; 
+    line-height: 30px; 
+    cursor: pointer; 
+}
+
+#outer-ct .navbar>li.active{
+    background: #ccc;
+    color: red;   
+}
+
+#outer-ct .navbar>li:not(:last-child){
+    border-right: 1px solid #ccc; 
+}
+
+#outer-ct .panel-ct .panel{
+    display: none;  
+}
+
+#outer-ct .panel-ct .panel.active{
+    display: block;
+}
+
+#outer-ct .panel-ct .panel .main{
+    height: 430px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-content: space-between;
+    border: 1px solid #ccc;
+}
+
+#outer-ct .panel-ct .panel .main .section{
+    width: 200px;
+    position: relative;
+    padding-bottom: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+#outer-ct .panel-ct .panel .main .section>img{
+    vertical-align: top;
+}
+
+#outer-ct .panel-ct .panel .main .section .cover{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0, 0, 0, .3);
+}
+
+#outer-ct .panel-ct .panel .main .section .cover>a{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    padding: 10px;
+    border: 1px solid red;
+    border-radius: 4px;
+    background: white;
+    color: red;
+}
+
+#outer-ct .panel-ct .panel .main .section p{
+    text-align: left;
+}
+
+#outer-ct .panel-ct .panel .main .section .product-price{
+    color: red;
+}
+
+
+
+
+
+
+
+

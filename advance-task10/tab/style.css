@@ -10,9 +10,9 @@ ul,li{
 
 .header::before,
 .header::after{
-content: '';
-clear: both;
-display: block;
+    content: '';
+    clear: both;
+    display: block;
 }
 
 .tab-ct .header{

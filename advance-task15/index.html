@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./jquery.min.js"></script>
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0 2px;
+            box-sizing: border-box;
+        }
+
+        #ct li,
+        #load-more {
+            display: block;
+            line-height: 30px;
+            margin: 10px auto;
+            padding: 5px 10px;
+        }
+
+        #ct li {
+            list-style: none;
+            border: 1px solid #ccc;
+        }
+
+        #ct li:hover {
+            background: #ccc;
+            color: white;
+        }
+
+        #load-more {
+            color: red;
+            text-decoration: none;
+            border: 1px solid red;
+            border-radius: 5px;
+            width: 100px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <ul id="ct">
+        <li>内容1</li>
+        <li>内容2</li>
+    </ul>
+    <a href="#" id="load-more" class="btn">
+        加载更多
+    </a>
+
+    <script>
+        var $ct = $('#ct'),
+            $btn = $('#load-more');
+            pageIndex = 3;
+
+        $btn.on('click', function (e) {
+            //取消a链接默认跳转到页面顶部的事件，直接将a标签內href的值改为javascript:void(0)也可，即href值为undefined
+            e.preventDefault()
+            $.ajax({
+                url: 'http://localhost:9000/api/loadMore?index=' + pageIndex + '&length=5',
+                success: function (data) {
+                    var results = JSON.parse(data);
+                    for (var i = 0; i < results.length; i++) {
+                        var $li = $('<li></li>')
+                        $li.text(results[i])
+                        $ct.append($li)
+                    }
+                    pageIndex += 5
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>

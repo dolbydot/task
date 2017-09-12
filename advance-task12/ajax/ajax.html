@@ -87,7 +87,11 @@
                 }
             }
 
-            xhr.open('get', 'https://www.mydolby.cn:9443/loadMore?index=' + pageIndex + '&length=5', true)
+           //远程可看 // xhr.open('get', 'https://www.mydolby.cn:9443/loadMore?index=' + pageIndex + '&length=5', true)
+            
+           //本地模拟
+            xhr.open('get', 'http://localhost:8080/loadMore?index=' + pageIndex + '&length=5', true)
+            
             xhr.send()
             isDataArrive = false
         })

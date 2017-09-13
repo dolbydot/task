@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- <script src="jquery.min.js"></script> -->
+    <style>
+        * {
+            padding: 10px;
+            margin: 0;
+        }
+
+        .outer-ct {
+            background: yellow;
+        }
+
+        .outer-ct .inner-ct {
+            background: aqua;
+        }
+
+        .outer-ct .inner-ct .target {
+            background: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="outer-ct">
+        outer container
+        <div class="inner-ct">
+            inner container
+            <div class="target">target</div>
+        </div>
+    </div>
+
+    <script>
+        //创建一个$函数模拟jQuery获取元素的方法，减少代码量
+        function $(selector) {
+            return document.querySelector(selector)
+        }
+
+        //以下演示阻止事件传播,相应地注释代码查看效果
+        $('.outer-ct').addEventListener('click', function (e) {
+            console.log('outer container click.. in 捕获阶段')
+        }, true)
+
+        $('.inner-ct').addEventListener('click', function (e) {
+            console.log('inner container click.. in 捕获阶段')
+            e.stopPropagation()//（一）：在inner-ct阻止了事件捕获，点击target，只会捕获到outer-ct和inner-ct，后续不会继续捕获，更别提冒泡
+        }, true)
+
+        $('.target').addEventListener('click', function (e) {
+            console.log('target click.. in 捕获阶段')
+            // e.stopPropagation()//（三）：在这里阻止事件继续捕获也没意义，因为已经捕获完成了，并且target被当作冒泡阶段的一部分，和（二）处结果相同
+        }, true)
+
+        $('.outer-ct').addEventListener('click', function (e) {
+            console.log('outer container click.. in 冒泡阶段')
+
+        }, false)
+
+        $('.inner-ct').addEventListener('click', function (e) {
+            console.log('inner container click.. in 冒泡阶段')
+        }, false)
+
+        $('.target').addEventListener('click', function (e) {
+            console.log('target click.. in 冒泡阶段')
+            // e.stopPropagation()//（二）：在target上阻止了事件冒泡，点击target会捕获到从外层到target之间的所有节点，包括target，target本身也会被当作冒泡阶段的一部分。
+        }, false)
+    </script>
+</body>
+
+</html>

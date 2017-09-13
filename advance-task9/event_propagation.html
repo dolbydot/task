@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- <script src="jquery.min.js"></script> -->
+    <style>
+        * {
+            padding: 10px;
+            margin: 0;
+        }
+
+        .outer-ct {
+            background: yellow;
+        }
+
+        .outer-ct .inner-ct {
+            background: aqua;
+        }
+
+        .outer-ct .inner-ct .target {
+            background: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="outer-ct">
+        outer container
+        <div class="inner-ct">
+            inner container
+            <div class="target">target</div>
+        </div>
+    </div>
+
+    <script>
+        //创建一个$函数模拟jQuery获取元素的方法，减少代码量
+        function $(selector) {
+            return document.querySelector(selector)
+        }
+
+        $('.outer-ct').addEventListener('click', function (e) {
+            console.log('outer container click.. in 捕获阶段')
+        }, true)
+
+        $('.inner-ct').addEventListener('click', function (e) {
+            console.log('inner container click.. in 捕获阶段')
+        }, true)
+
+        $('.target').addEventListener('click', function (e) {
+            console.log('target click.. in 捕获阶段')
+        }, true)
+
+        $('.outer-ct').addEventListener('click', function (e) {
+            console.log('outer container click.. in 冒泡阶段')
+        }, false)
+
+        $('.inner-ct').addEventListener('click', function (e) {
+            console.log('inner container click.. in 冒泡阶段')
+        }, false)
+
+        $('.target').addEventListener('click', function (e) {
+            console.log('target click.. in 冒泡阶段')
+        }, false)
+    </script>
+</body>
+
+</html>

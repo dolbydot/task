@@ -1,0 +1,161 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'iconfont';
+    src: url('//at.alicdn.com/t/font_415079_tjxzs3cxxl2fbt9.eot');
+    src: url('//at.alicdn.com/t/font_415079_tjxzs3cxxl2fbt9.eot?#iefix') format('embedded-opentype'),
+    url('//at.alicdn.com/t/font_415079_tjxzs3cxxl2fbt9.woff') format('woff'),
+    url('//at.alicdn.com/t/font_415079_tjxzs3cxxl2fbt9.ttf') format('truetype'),
+    url('//at.alicdn.com/t/font_415079_tjxzs3cxxl2fbt9.svg#iconfont') format('svg');
+}
+
+.icon {
+    font-family: 'iconfont';
+    font-size: 16px;
+    vertical-align: middle;
+}
+
+html,
+body,
+main {
+    height: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+header {
+    position: absolute;
+    top: 10px;
+    width: 100%;
+}
+
+header .icon-login {
+    position: absolute;
+    right: 20px;
+    font-size: 2em;
+    cursor: pointer;
+}
+
+main {
+    background: linear-gradient(to left top, rgba(50, 50, 140, .6), rgba(200, 150, 20, .4)), url(1.jpg) center center no-repeat;
+    background-size: cover;
+}
+
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    padding: 16px;
+    background: white;
+    box-shadow: 0 0 4px 4px rgba(0, 0, 0, .3)
+}
+
+.modal .close {
+    display: block;
+    font-size: 1.3em;
+    position: absolute;
+    top: 0;
+    right: 10px;
+    color: #333;
+}
+
+.modal .tab {
+    text-align: center;
+}
+
+.modal .tab a {
+    color: #333;
+    text-decoration: none;
+    margin: 0 10px;
+    border-bottom: 2px solid #333;
+}
+
+.modal .content {
+    padding: 20px 40px;
+}
+
+.modal .content .errormsg {
+    color: red;
+    font-size: .8em;
+}
+
+.ipt-field {
+    margin-top: 10px;
+    border: 1px solid #cdcdcd;
+    padding: 5px 10px;
+    line-height: 1.5;
+}
+
+.ipt-field:last-child {
+    text-align: center;
+    width: 50px;
+    padding: 0;
+    border-radius: 3px;
+}
+
+.ipt-field input {
+    width: calc(100% - 30px);
+    outline: none;
+    border: none;
+    background: white;
+}
+
+.ipt-field:last-child input {
+    width: 100%;
+    cursor: pointer;
+    padding: 5px 10px;
+    color: #333;
+}
+
+::-webkit-input-placeholder {
+    /* WebKit browsers */
+    color: #aaa;
+}
+
+:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: #aaa;
+}
+
+::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: #aaa;
+}
+
+:-ms-input-placeholder {
+    /* Internet Explorer 10+ */
+    color: #aaa;
+}
+/*这里的login对应的是js中的点击事件添加的class，
+意味当最外层容器添加上了名为login的类后，点击登录，登录框不翻转并隐藏背面，有一个2px的下边框，将注册框翻转180度并隐藏背面，我们肉眼看来就是将注册框彻底隐藏掉了，只看得到登录框*/
+/*这里的register对应的是js中的点击事件添加的class，
+意味当最外层容器添加上了名为register的类后，点击注册，注册框不翻转并隐藏背面，有一个2px的下边框，将登录框翻转180度并隐藏背面，我们肉眼看来就是将登录框彻底隐藏掉了，只看得到注册框*/
+/*相当于点击1，翻转2，1和2都会隐藏背面，这样他们才能背靠背粘在一起*/
+
+.modal-ct.login .modal-login,
+.modal-ct.register .modal-register {
+    backface-visibility: hidden;
+    transform: translate(-50%, -50%) rotateY(0deg);
+    transition: all 1s;
+}
+
+.modal-ct.login .modal-register,
+.modal-ct.register .modal-login {
+    backface-visibility: hidden;
+    transform: translate(-50%, -50%) rotateY(180deg);
+    transition: all 1s;
+}
+
+.modal-ct.login .registerHref,
+.modal-ct.register .loginHref {
+    border-bottom: none;
+}

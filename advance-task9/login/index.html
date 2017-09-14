@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>登录|注册</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <header>
+        <a href="#" class="icon icon-login">&#xe689;</a>
+    </header>
+
+    <main>
+        <div class="modal-ct login">
+            <div class=" modal modal-login">
+                <a href="#" class="close">&times;</a>
+
+                <div class="tab">
+                    <a href="#" class="loginHref">登录</a>
+                    <a href="#" class="registerHref">注册</a>
+                </div>
+
+                <div class="content">
+                    <div class="errormsg"></div>
+                    <form action="/login" method="post">
+                        <div class="ipt-field">
+                            <span class="icon icon-username">&#xe638;</span>
+                            <input name="username" type="text" placeholder="用户名">
+                        </div>
+                        <div class="ipt-field">
+                            <span class="icon icon-password">&#xe620;</span>
+                            <input name="password" type="password" placeholder="密码">
+                        </div>
+                        <div class="ipt-field">
+                            <input type="submit" value="登录">
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+            <div class=" modal modal-register">
+                <a href="#" class="close">&times;</a>
+
+                <div class="tab">
+                    <a href="#" class="loginHref">登录</a>
+                    <a href="#" class="registerHref">注册</a>
+                </div>
+
+                <div class="content">
+                    <div class="errormsg"></div>
+                    <form action="/login" method="post">
+                        <div class="ipt-field">
+                            <span class="icon icon-username">&#xe638;</span>
+                            <input name="username" type="text" placeholder="用户名">
+                        </div>
+                        <div class="ipt-field">
+                            <span class="icon icon-password">&#xe620;</span>
+                            <input name="password" type="password" placeholder="请输入密码">
+                        </div>
+                        <div class="ipt-field">
+                            <span class="icon icon-password">&#xe620;</span>
+                            <input name="password2" type="password" placeholder="请再次输入密码">
+                        </div>
+                        <div class="ipt-field">
+                            <input type="submit" value="注册">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <script src="jquery.min.js"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>

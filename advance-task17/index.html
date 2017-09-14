@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        @font-face {
+            font-family: 'iconfont';
+            /* project id 413701 */
+            src: url('//at.alicdn.com/t/font_413701_3p3cm3lbjfj8xgvi.eot');
+            src: url('//at.alicdn.com/t/font_413701_3p3cm3lbjfj8xgvi.eot?#iefix') format('embedded-opentype'),
+            url('//at.alicdn.com/t/font_413701_3p3cm3lbjfj8xgvi.woff') format('woff'),
+            url('//at.alicdn.com/t/font_413701_3p3cm3lbjfj8xgvi.ttf') format('truetype'),
+            url('//at.alicdn.com/t/font_413701_3p3cm3lbjfj8xgvi.svg#iconfont') format('svg');
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            list-style: none;
+        }
+
+        #carousel-ct {
+            position: relative;
+            margin-top: 20px;
+            margin-left: 20px;
+            width: 400px;
+            height: 300px;
+              /* overflow: hidden;      */
+        }
+
+        #carousel-ct::before,
+        #carousel-ct::after {
+            font-family: 'iconfont';
+            font-size: 28px;
+            color: rgba(200, 200, 200, .5);
+            display: block;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+
+        #carousel-ct::before {
+            content: '\e720';
+        }
+
+        #carousel-ct::after {
+            content: '\e6f8';
+            right: 0;
+        }
+
+        #carousel-ct .pages {
+            clear: both;
+            width: 2400px;
+        }
+
+        #carousel-ct .pages>li {
+            float: left;
+        }
+
+        #carousel-ct img {
+            vertical-align: top;
+        }
+
+        #carousel-ct .status-bar {
+            clear: both;
+            overflow: hidden;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        #carousel-ct .status-bar>li {
+            float: left;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            border: 1px solid rgba(200, 200, 200, .5);
+            margin: 8px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="carousel-ct">
+        <ul class="pages">
+            <li><a href=""><img src="4.jpg" alt=""></a></li>
+            <li><a href=""><img src="6.jpg" alt=""></a></li>
+            <li><a href=""><img src="5.jpg" alt=""></a></li>
+            <li><a href=""><img src="1.jpeg" alt=""></a></li>
+            <li><a href=""><img src="2.jpg" alt=""></a></li>
+            <li><a href=""><img src="3.jpg" alt=""></a></li>
+        </ul>
+
+        <ul class="status-bar">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+
+    <script>
+        
+
+    </script>
+    <script src="jquery.min.js"></script>
+</body>
+
+</html>

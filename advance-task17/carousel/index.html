@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        @font-face {
+            font-family: 'iconfont';
+            /* project id 413701 */
+            src: url('//at.alicdn.com/t/font_413701_3p3cm3lbjfj8xgvi.eot');
+            src: url('//at.alicdn.com/t/font_413701_3p3cm3lbjfj8xgvi.eot?#iefix') format('embedded-opentype'),
+            url('//at.alicdn.com/t/font_413701_3p3cm3lbjfj8xgvi.woff') format('woff'),
+            url('//at.alicdn.com/t/font_413701_3p3cm3lbjfj8xgvi.ttf') format('truetype'),
+            url('//at.alicdn.com/t/font_413701_3p3cm3lbjfj8xgvi.svg#iconfont') format('svg');
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            list-style: none;
+            text-decoration: none;
+        }
+
+        #carousel-ct {
+            position: relative;
+            margin-top: 20px;
+            margin-left: 20px;
+            width: 400px;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        #carousel-ct .icon {
+            font-family: 'iconfont';
+            font-size: 28px;
+            color: rgba(200, 200, 200, .4);
+            display: block;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+
+        #carousel-ct .next {
+            right: 0;
+        }
+
+        #carousel-ct .img-ct {
+            clear: both;
+            position: absolute;
+            /* 是为了后面移动图片的有效性  */
+        }
+
+        #carousel-ct .img-ct>li {
+            float: left;
+        }
+
+        #carousel-ct img {
+            vertical-align: top;
+        }
+
+        #carousel-ct .status-bar {
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+            font-size: 0;
+            text-align: center;
+        }
+
+        #carousel-ct .status-bar>li {
+            display: inline-block;
+            font-size: 0;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            margin: 8px;
+            cursor: pointer;
+            background: rgba(200, 200, 200, .4);
+        }
+
+        #carousel-ct .status-bar>li.active {
+            background: white;
+            opacity: .7;
+        }
+    </style>
+    <script src="jquery.min.js"></script>
+</head>
+
+<body>
+    <div id="carousel-ct">
+        <ul class="img-ct">
+            <!-- <li data-id="img0"><a href="#"><img src="./img/01.png" alt=""></a></li>
+            <li data-id="img1"><a href="#"><img src="./img/02.png" alt=""></a></li>
+            <li data-id="img2"><a href="#"><img src="./img/03.png" alt=""></a></li>
+            <li data-id="img3"><a href="#"><img src="./img/04.png" alt=""></a></li>
+            <li data-id="img4"><a href="#"><img src="./img/05.png" alt=""></a></li> -->
+            <li data-id="img1"><a href="#"><img src="./img/2.jpg" alt=""></a></li>
+            <li data-id="img2"><a href="#"><img src="./img/3.jpg" alt=""></a></li>
+            <li data-id="img0"><a href="#"><img src="./img/1.jpeg" alt=""></a></li>
+            <li data-id="img3"><a href="#"><img src="./img/4.jpg" alt=""></a></li>
+            <li data-id="img4"><a href="#"><img src="./img/5.jpg" alt=""></a></li>
+            <li data-id="img4"><a href="#"><img src="./img/6.jpg" alt=""></a></li>
+        </ul>
+        <a class="icon pre" href="#">&#xe720</a>
+        <!-- 这里要么没有href，要么href的值设为#，因为href没有设置值的情况下默认是刷新网页，不会移动图片-->
+        <a class="icon next" href="#">&#xe6f8</a>
+        <ul class="status-bar">
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+
+    <script>
+        var $imgs = $('#carousel-ct .img-ct>li')//$imgs里保存的是静态值，$('#carousel-ct .img-ct>li')里保存的是动态值
+        $imgCt = $('.img-ct')
+        $preBtn = $('.pre')
+        $nextBtn = $('.next')
+        $status = $('.status-bar>li')
+        pageIndex = 0
+        isAnimate = false//状态锁
+
+        imgCount = $imgs.length
+        imgWidth = $imgs.width()
+        $imgCt.append($imgs.first().clone())
+        $imgCt.prepend($imgs.last().clone())
+        $imgCt.width((imgCount + 2) * imgWidth)//因为新添加的两个li,$imgs没有动态更新，所以imgCount得到的也不是改变之后的值，我们需要手动加上，这一步是为了将图片并排排列，但此时图片是最后一张，我们需要手动将第一张移动到它原本的位置
+        $imgCt.css({ left: -imgWidth })//向左移一张图片的宽度
+
+        $preBtn.click(function () {
+            playPre(1)
+        })
+
+        $nextBtn.click(function () {
+            playNext(1)
+        })
+
+        $status.click(function () {
+            var index = $(this).index()
+            if (index > pageIndex) {
+                playNext(index - pageIndex)
+            } else if (index < pageIndex) {
+                playPre(pageIndex - index)
+            }
+        })
+
+        function playPre(len) {
+            if (isAnimate) return
+            isAnimate = true
+            $imgCt.animate({
+                left: '+=' + len * imgWidth
+            }, function () {
+                pageIndex -= len
+                if (pageIndex < 0) {
+                    pageIndex = imgCount - 1
+                    $imgCt.css({ left: -imgCount * imgWidth })
+                }
+                setStatus()
+                isAnimate = false
+            })
+        }
+
+        function playNext(len) {
+            if (isAnimate) return
+            isAnimate = true
+            $imgCt.animate({
+                left: '-=' + len * imgWidth
+            }, function () {
+                pageIndex += len
+                if (pageIndex === imgCount) {
+                    pageIndex = 0
+                    $imgCt.css({ left: -imgWidth })
+                }
+                setStatus()
+                isAnimate = false
+            })
+        }
+
+        function setStatus() {
+            $status.removeClass('active')
+                .eq(pageIndex)
+                .addClass('active')
+        }
+
+        //自动轮播，可手动,鼠标移上去停止轮播，鼠标移开继续轮播
+        var timer
+        function start() {
+            timer = setInterval(function () {
+                playNext(1)
+            }, 1500)
+        }
+        start()
+
+        $imgCt.on('mouseenter', function () {
+            clearInterval(timer)
+        }).on('mouseleave', function () {
+            start()
+        })
+    </script>
+
+</body>
+
+</html>

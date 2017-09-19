@@ -93,17 +93,12 @@
 <body>
     <div id="carousel-ct">
         <ul class="img-ct">
-            <!-- <li data-id="img0"><a href="#"><img src="./img/01.png" alt=""></a></li>
-            <li data-id="img1"><a href="#"><img src="./img/02.png" alt=""></a></li>
-            <li data-id="img2"><a href="#"><img src="./img/03.png" alt=""></a></li>
-            <li data-id="img3"><a href="#"><img src="./img/04.png" alt=""></a></li>
-            <li data-id="img4"><a href="#"><img src="./img/05.png" alt=""></a></li> -->
-            <li data-id="img1"><a href="#"><img src="./img/2.jpg" alt=""></a></li>
-            <li data-id="img2"><a href="#"><img src="./img/3.jpg" alt=""></a></li>
-            <li data-id="img0"><a href="#"><img src="./img/1.jpeg" alt=""></a></li>
+            <li data-id="img0"><a href="#"><img src="./img/2.jpg" alt=""></a></li>
+            <li data-id="img1"><a href="#"><img src="./img/3.jpg" alt=""></a></li>
+            <li data-id="img2"><a href="#"><img src="./img/1.jpeg" alt=""></a></li>
             <li data-id="img3"><a href="#"><img src="./img/4.jpg" alt=""></a></li>
             <li data-id="img4"><a href="#"><img src="./img/5.jpg" alt=""></a></li>
-            <li data-id="img4"><a href="#"><img src="./img/6.jpg" alt=""></a></li>
+            <li data-id="img5"><a href="#"><img src="./img/6.jpg" alt=""></a></li>
         </ul>
         <a class="icon pre" href="#">&#xe720</a>
         <!-- 这里要么没有href，要么href的值设为#，因为href没有设置值的情况下默认是刷新网页，不会移动图片-->
@@ -142,14 +137,21 @@
             playNext(1)
         })
 
-        $bullet.click(function () {
+        $bullet.on('click', function () {
             var index = $(this).index()
             if (index > pageIndex) {
                 playNext(index - pageIndex)
             } else if (index < pageIndex) {
                 playPre(pageIndex - index)
             }
+
+            play(index)
         })
+
+        play(0)
+        autoPlay()
+
+
 
         function playPre(len) {
             if (isAnimate) return
@@ -183,6 +185,18 @@
             })
         }
 
+        //渐变
+        function play(index) {
+            if (isAnimate) return
+            isAnimate = true
+            $imgs.eq(pageIndex).fadeOut(500)
+            $imgs.eq(index).fadeIn(500, function () {
+                isAnimate = false
+            })
+            pageIndex = index
+            setBullet()
+        }
+
         function setBullet() {
             $bullet.removeClass('active')
                 .eq(pageIndex)
@@ -196,7 +210,7 @@
                 playNext(1)
             }, 1500)
         }
-        autoPlay()
+
 
         $imgCt.on('mouseenter', function () {
             clearInterval(timer)

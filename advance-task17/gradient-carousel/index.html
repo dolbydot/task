@@ -93,12 +93,12 @@
 <body>
     <div id="carousel-ct">
         <ul class="img-ct">
-            <li data-id="img1"><a href="#"><img src="./img/1.jpeg" alt=""></a></li>
-            <li data-id="img2"><a href="#"><img src="./img/2.jpg" alt=""></a></li>
-            <li data-id="img0"><a href="#"><img src="./img/3.jpg" alt=""></a></li>
+            <li data-id="img0"><a href="#"><img src="./img/1.jpeg" alt=""></a></li>
+            <li data-id="img1"><a href="#"><img src="./img/2.jpg" alt=""></a></li>
+            <li data-id="img2"><a href="#"><img src="./img/3.jpg" alt=""></a></li>
             <li data-id="img3"><a href="#"><img src="./img/4.jpg" alt=""></a></li>
             <li data-id="img4"><a href="#"><img src="./img/5.jpg" alt=""></a></li>
-            <li data-id="img4"><a href="#"><img src="./img/6.jpg" alt=""></a></li>
+            <li data-id="img5"><a href="#"><img src="./img/6.jpg" alt=""></a></li>
         </ul>
         <a class="icon pre" href="#">&#xe720</a>
         <!-- 这里要么没有href，要么href的值设为#，因为href没有设置值的情况下默认是刷新网页，不会移动图片-->
@@ -114,37 +114,33 @@
     </div>
 
     <script>
-        var $imgs = $('#carousel-ct .img-ct>li')//$imgs里保存的是静态值，$('#carousel-ct .img-ct>li')里保存的是动态值
-        $imgCt = $('.img-ct')
+        var $imgCt = $('.img-ct')
+        $imgs = $('#carousel-ct .img-ct>li')//$imgs里保存的是静态值，$('#carousel-ct .img-ct>li')里保存的是动态值
         $preBtn = $('.pre')
         $nextBtn = $('.next')
-        $bullet = $('.bullet-bar>li')
+        $bullet = $('.bullet-bar')
+        imgCount = $imgs.length
+        imgWidth = $imgs.width()
+
         pageIndex = 0
         isAnimate = false//状态锁
 
-        imgCount = $imgs.length
-        imgWidth = $imgs.width()
-        $imgCt.append($imgs.first().clone())
-        $imgCt.prepend($imgs.last().clone())
-        $imgCt.width((imgCount + 2) * imgWidth)//因为新添加的两个li,$imgs没有动态更新，所以imgCount得到的也不是改变之后的值，我们需要手动加上，这一步是为了将图片并排排列，但此时图片是最后一张，我们需要手动将第一张移动到它原本的位置
-        $imgCt.css({ left: -imgWidth })//向左移一张图片的宽度
 
-        $preBtn.click(function () {
-            playPre(1)
+        // $imgCt.append($imgs.first().clone())
+        // $imgCt.prepend($imgs.last().clone())
+        // $imgCt.width((imgCount + 2) * imgWidth)//因为新添加的两个li,$imgs没有动态更新，所以imgCount得到的也不是改变之后的值，我们需要手动加上，这一步是为了将图片并排排列，但此时图片是最后一张，我们需要手动将第一张移动到它原本的位置
+        // $imgCt.css({ left: -imgWidth })//向左移一张图片的宽度
+
+        $preBtn.on('click', function () {
+            playPre()
         })
 
-        $nextBtn.click(function () {
-            playNext(1)
+        $nextBtn.on('click', function () {
+            playNext()
         })
 
-        $bullet.on('click', function () {
+        $bullet.find('li').on('click', function () {
             var index = $(this).index()
-            if (index > pageIndex) {
-                playNext(index - pageIndex)
-            } else if (index < pageIndex) {
-                playPre(pageIndex - index)
-            }
-
             play(index)
         })
 
@@ -152,40 +148,14 @@
         autoPlay()
 
 
-
-        function playPre(len) {
-            if (isAnimate) return
-            isAnimate = true
-            $imgCt.animate({
-                left: '+=' + len * imgWidth
-            }, function () {
-                pageIndex -= len
-                if (pageIndex < 0) {
-                    pageIndex = imgCount - 1
-                    $imgCt.css({ left: -imgCount * imgWidth })
-                }
-                setBullet()
-                isAnimate = false
-            })
+        function playPre() {
+            play((imgCount + pageIndex - 1) % imgCount)
         }
 
-        function playNext(len) {
-            if (isAnimate) return
-            isAnimate = true
-            $imgCt.animate({
-                left: '-=' + len * imgWidth
-            }, function () {
-                pageIndex += len
-                if (pageIndex === imgCount) {
-                    pageIndex = 0
-                    $imgCt.css({ left: -imgWidth })
-                }
-                setBullet()
-                isAnimate = false
-            })
+        function playNext() {
+            play((pageIndex + 1) % imgCount)
         }
 
-        //渐变
         function play(index) {
             if (isAnimate) return
             isAnimate = true
@@ -198,7 +168,7 @@
         }
 
         function setBullet() {
-            $bullet.removeClass('active')
+            $bullet.children().removeClass('active')
                 .eq(pageIndex)
                 .addClass('active')
         }
@@ -207,10 +177,10 @@
         var timer
         function autoPlay() {
             timer = setInterval(function () {
-                playNext(1)
-            }, 1500)
+                playNext()
+                // console.log(Date.now())//测试定时器用
+            }, 2000)
         }
-
 
         $imgCt.on('mouseenter', function () {
             clearInterval(timer)

@@ -1,0 +1,53 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box; 
+}
+
+html{
+    height: 100%
+}
+
+.content{
+    position: relative;   
+} 
+
+.content .item{
+    position: absolute;
+    width: 200px;
+    margin-top: 10px;
+    margin-left: 10px;
+    transition: all 1.5s;
+}
+
+.content .height1{
+    height: 200px;
+    background: #9ff;
+}
+
+.content .height2{
+    height: 500px;
+    background: #9cf;
+}
+
+.content .height3{
+    height: 600px;
+    background: #99f;
+}
+
+.content .height4{
+    height: 400px;
+    background: #96f;
+}
+
+.content .height5{
+    height: 300px;
+    background: #93f;
+}
+
+.content .height6{
+    height: 700px;
+    background: #90f;
+}
+
+

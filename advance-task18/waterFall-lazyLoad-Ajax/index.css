@@ -35,6 +35,7 @@ a{
     border: 1px solid #cdcdcd; 
     transition: all 1s;
     padding-bottom: 10px;
+    opacity: 0;
 }
 
 #pic-ct .item img{

@@ -8,7 +8,7 @@ colSumHeight = []
 nodeWidth = $('.item').outerWidth(true)
 colNum = parseInt($('#pic-ct').width() / nodeWidth)
 
-for (var i = 0; i < colNum.length; i++) {
+for (var i = 0; i < colNum; i++) {
     colSumHeight[i] = 0
 }
 
@@ -18,17 +18,18 @@ start()
 function start() {
     getData(function (newList) {//1首先获取数据，异步的过程，不适合用函数声明
         console.log(newList)
-        isDataArrive=true
+        isDataArrive = true
         $.each(newList, function (idx, news) {//一条条获取信息
-            var $node = getNode(newList)//将数据变为DOM方式放在页面上
+            var $node = getNode(news)//将数据变为DOM方式放在页面上
+
             $node.find('img').load(function () {
                 $('#pic-ct').append($node)
                 console.log($node, 'loaded...')
                 waterFallPlace($node)//将DOM通过瀑布流的方式放在页面上
             })//图片预加载：图片无需放到页面上也可以加载，需要时可直接出现
         })
-        isDataArrive = false
     })
+    isDataArrive = false
 }
 
 $(window).scroll(function () {//窗口滚动，判断#load是否出现，以此作为懒加载的触发时机
@@ -71,24 +72,24 @@ function getNode(item) {
 
 function waterFallPlace($node) {
     // $node.each(function () {
-        var idx = 0
-        minSumHeight = colSumHeight[0]
-        for (var i = 0; i < colSumHeight.length; i++) {
-            if (colSumHeight[i] < minSumHeight) {//找到数组最小值并获取下标
-                idx = i
-                minSumHeight = colSumHeight[i]
-            }//找到上一排中高度最小的列
-        }
+    var idx = 0;
+    var minSumHeight = colSumHeight[0]
+    for (var i = 0; i < colSumHeight.length; i++) {
+        if (colSumHeight[i] < minSumHeight) {//找到数组最小值并获取下标
+            idx = i
+            minSumHeight = colSumHeight[i]
+        }//找到上一排中高度最小的列
+    }
 
-        $node.css({
-            left: nodeWidth * idx,
-            top: minSumHeight,
-            opacity: 1
-        })
+    $node.css({
+        left: nodeWidth * idx,
+        top: minSumHeight,
+        opacity: 1
+    })
 
-        colSumHeight[idx] = $node.outerHeight(true) + colSumHeight[idx]
-        $('#pic-ct').height(Math.max.apply(null, colSumHeight))
-        //li都是绝对定位脱离文档流不能撑开服容器，使#load不可见可撑开父容器
+    colSumHeight[idx] = $node.outerHeight(true) + colSumHeight[idx];
+    $('#pic-ct').height(Math.max.apply(null, colSumHeight))
+    //li都是绝对定位脱离文档流不能撑开服容器，使#load不可见可撑开父容器
     // })
 }
 

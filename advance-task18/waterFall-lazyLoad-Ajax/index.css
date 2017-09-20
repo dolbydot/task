@@ -41,7 +41,7 @@ a{
 #pic-ct .item img{
     margin: 10px;
     width: 260px;
-    vertical-align: top;
+    vertical-align: top; 
 }
 
 #pic-ct .item .header{
@@ -50,7 +50,7 @@ a{
     border-bottom: 1px solid #cdcdcd
 }
 
-#pic-ct .item .desp{
+#pic-ct .desp{
     font-size: 12px;
     line-height: 1.8;
     margin: 10px 15px 0;

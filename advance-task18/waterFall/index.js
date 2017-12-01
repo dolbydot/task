@@ -8,7 +8,7 @@ var waterFall = (function () {
     }
 
     function waterfall() {
-        var cloLength = parseInt($('.content').width() / $('.item').width())//几列
+        var cloLength = parseInt($('.content').width() / $('.item').outerWidth(true))//几列
         var itemArr = []//首先定义一个空数组，项数为列数，初始化数组中的每一项值为0
         for (var i = 0; i < cloLength; i++) {
             itemArr[i] = 0

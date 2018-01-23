@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <style lang="">
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            padding: 2vh;
+        }
+
+        li {
+            list-style: none;
+            line-height: 10vh;
+            border: 1px solid black;
+            margin-bottom: 2vh;
+        }
+
+        .ct {
+            text-align: right;
+        }
+
+        .goTop {
+            cursor: pointer;
+            color: red;
+            border: 1px solid red;
+            display: inline-block;
+            padding: 1vh;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li>item 1</li>
+        <li>item 2</li>
+        <li>item 3</li>
+        <li>item 4</li>
+        <li>item 5</li>
+        <li>item 6</li>
+        <li>item 7</li>
+        <li>item 8</li>
+        <li>item 9</li>
+        <li>item 10</li>
+        <li>item 11</li>
+        <li>item 12</li>
+        <li>item 13</li>
+        <li>item 14</li>
+        <li>item 15</li>
+        <li>item 16</li>
+        <li>item 17</li>
+        <li>item 18</li>
+        <li>item 19</li>
+        <li>item 20</li>
+    </ul>
+
+    <div class="ct"></div>
+
+    <script>
+        function GoTop($ct) {
+            this.ct = $ct
+            this.target = $(`<span class="goTop">goTop</span>`)
+            this.bindEvent()
+            this.createNode()
+        }
+
+        GoTop.prototype = {
+            bindEvent() {
+                $(window).scroll(() => {
+                    var scrollTop = $(window).scrollTop()
+                    var clientHeight = $(window).height()
+                    // 如果滚动条卷曲的高度大于0就说明文档高度超出视窗顶部了，这时就应该出现goTop标志，
+                    // 但实际上不需要那么精确，所以这里设置为大于20即显示goTop
+                    if (scrollTop > 20) {
+                        this.target.show()
+                    } else {
+                        this.target.hide()
+                    }
+                })
+                this.target.on('click', () => {
+                    $(window).scrollTop(0, 0)
+                })
+            },
+            createNode() {
+                this.ct.append(this.target)
+                this.target.hide()
+            }
+        }
+
+        var goTop = new GoTop($('.ct'))
+    </script>
+</body>
+
+</html>

@@ -6,22 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>轮播组件</title>
+    <link rel="stylesheet" href="./common.css">
     <style>
-        * {
-            padding: 0;
-            margin: 0;
-            box-sizing: border-box;
-        }
-
-        ul,
-        li {
-            list-style: none;
-        }
-
-        a {
-            text-decoration: none;
-        }
-
         .wrap {
             position: relative;
             margin: 100px auto;
@@ -148,7 +134,7 @@
                 })
                 // 鼠标悬停在图片上停止轮播，鼠标离开图片继续自动轮播
                 this.$imgCt.on('mouseenter', () => {
-                    window.clearInterval(this.timerId)
+                    clearInterval(this.timerId)
                 }).on('mouseleave', () => {
                     this.autoPlay()
                 })
@@ -204,10 +190,11 @@
                     .addClass('active')
             },
             autoPlay() {
+                clearInterval(this.timerId)
                 this.timerId = setInterval(() => {
                     this.playNext(1)
                     // console.log(Date.now())
-                }, 1500)
+                }, 2000)
             }
         }
 

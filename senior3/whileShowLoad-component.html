@@ -1,2 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>曝光加载</title>
+    <link rel="stylesheet" href="./common.css">
+    <style>
+        .ct {
+            max-width: 840px;
+            margin: 0 auto;
+        }
 
+        .ct::after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .ct li {
+            float: left;
+            margin: 10px;
+        }
+
+        .ct li img {
+            width: 400px;
+            height: 300px;
+        }
+
+        p {
+            float: left;
+        }
+    </style>
+    <script src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+</head>
+
+<body>
+    <ul class="ct">
+        <li><a href="#"><img src="" data-src="https://dummyimage.com/400x300/ffffcc/fff"></a></li>
+        <li><a href="#"><img src="" data-src="https://dummyimage.com/400x300/ffff99/fff"></a></li>
+        <li><a href="#"><img src="" data-src="https://dummyimage.com/400x300/ffff66/fff"></a></li>
+        <li><a href="#"><img src="" data-src="https://dummyimage.com/400x300/ffff33/fff"></a></li>
+        <li><a href="#"><img src="" data-src="https://dummyimage.com/400x300/ffff00/fff"></a></li>
+        <li><a href="#"><img src="" data-src="https://dummyimage.com/400x300/ffccff/fff"></a></li>
+        <li><a href="#"><img src="" data-src="https://dummyimage.com/400x300/ffcccc/fff"></a></li>
+        <li><a href="#"><img src="" data-src="https://dummyimage.com/400x300/ffcc99/fff"></a></li>
+        <li><a href="#"><img src="" data-src="https://dummyimage.com/400x300/ffcc66/fff"></a></li>
+        <li><a href="#"><img src="" data-src="https://dummyimage.com/400x300/ffcc33/fff"></a></li>
+        <li><a href="#"><img src="" data-src="https://dummyimage.com/400x300/ffcc00/fff"></a></li>
+        <li><a href="#"><img src="" data-src="https://dummyimage.com/400x300/ff99ff/fff"></a></li>
+        <li><a href="#"><img src="" data-src="https://dummyimage.com/400x300/ff99cc/fff"></a></li>
+        <li><a href="#"><img src="" data-src="https://dummyimage.com/400x300/ff9999/fff"></a></li>
+        <li><a href="#"><img src="" data-src="https://dummyimage.com/400x300/ff9966/fff"></a></li>
+        <li><a href="#"><img src="" data-src="https://dummyimage.com/400x300/ff9933/fff"></a></li>
+        <li><a href="#"><img src="" data-src="https://dummyimage.com/400x300/ff9900/fff"></a></li>
+        <li><a href="#"><img src="" data-src="https://dummyimage.com/400x300/ff66ff/fff"></a></li>
+        <li><a href="#"><img src="" data-src="https://dummyimage.com/400x300/ff66cc/fff"></a></li>
+        <li><a href="#"><img src="" data-src="https://dummyimage.com/400x300/ff6699/fff"></a></li>
+        <li><a href="#"><img src="" data-src="https://dummyimage.com/400x300/ff6666/fff"></a></li>
+        <li><a href="#"><img src="" data-src="https://dummyimage.com/400x300/ff6633/fff"></a></li>
+        <li><a href="#"><img src="" data-src="https://dummyimage.com/400x300/ff6600/fff"></a></li>
+        <li><a href="#"><img src="" data-src="https://dummyimage.com/400x300/ff33ff/fff"></a></li>
+        <li><a href="#"><img src="" data-src="https://dummyimage.com/400x300/ff33cc/fff"></a></li>
+        <li><a href="#"><img src="" data-src="https://dummyimage.com/400x300/ff3399/fff"></a></li>
+        <li><a href="#"><img src="" data-src="https://dummyimage.com/400x300/ff3366/fff"></a></li>
+        <li><a href="#"><img src="" data-src="https://dummyimage.com/400x300/ff3333/fff"></a></li>
+        <li><a href="#"><img src="" data-src="https://dummyimage.com/400x300/ff3300/fff"></a></li>
+        <li><a href="#"><img src="" data-src="https://dummyimage.com/400x300/ff00ff/fff"></a></li>
+        <li><a href="#"><img src="" data-src="https://dummyimage.com/400x300/ff00cc/fff"></a></li>
+        <p id="hello">hello</p>
+        <p id="world">world</p>
+    </ul>
+
+    <script>
+        // 首先页面上面全是同一张占位图
+        // 图片出现在可视范围就将data-src的值传给真正的src以加载图片
+        // 进入页面后就加载第一屏的真图
+        // 滚动到页面底部时显示‘没有啦’
+        var Lazy = (function () {
+            function Exposure($target, callback, isOnce) {
+                this.$target = $target;
+                this.callback = callback;
+                this.isOnce = isOnce;
+                this.hasShow = false; //用于判断是否继续执行
+                this.bind();
+                this.check();
+            }
+            Exposure.prototype = {
+                constructor: Exposure,
+                showImg: function ($node) {
+                    var imgUrl = $node.attr('data-src')
+                    $node.attr('src', imgUrl)
+                },
+                bind: function () {
+                    var _this = this;
+                    $(window).on('scroll', function () {
+                        _this.check();
+                    })
+                },
+                check: function () {
+                    if (this.isOnce) {// 如果传入第3个参数就执行；
+                        if (this.isShow() && !this.hasShow) {//当hasShow为true就不再执行，因此就只执行一次
+                            this.callback(this.$target)
+                            this.hasShow = true;
+                        }
+                    } else {// 如果没有传入第3个参数就执行；
+                        if (this.isShow()) {
+                            this.callback(this.$target)
+                        }
+                    }
+                },
+                isShow: function () {
+                    var windowHeight = $(window).height()
+                    var scrollTop = $(window).scrollTop()
+                    var offsetTop = this.$target.offset().top
+                    var nodeHeight = this.$target.height()
+                    if (windowHeight + scrollTop > offsetTop && scrollTop < offsetTop + nodeHeight) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            }
+            return {
+                init: function ($targets, callback) {//多次执行callback;
+                    $targets.each(function (index, target) {
+                        new Exposure($(target), callback)
+                    })
+                },
+                one: function ($target, callback) {//执行一次callback;
+                    $target.each(function (index, target) {
+                        new Exposure($(target), callback, true)
+                    })
+                }
+            }
+        })()
+
+        Lazy.one($('#hello'), function ($node) {
+            $node.text($node.text() + '只加一次');
+        })
+        Lazy.init($('#world'), function ($node) {
+            $node.text($node.text() + '加多次');
+        })
+        Lazy.one($('.ct img'), function ($node) {
+            this.showImg($node);
+        })
+    </script>
+</body>
+
+</html>

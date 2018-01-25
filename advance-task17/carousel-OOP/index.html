@@ -144,6 +144,7 @@
 
         $bullet.click(function () {
             var index = $(this).index()
+            console.log($(this))
             if (index > pageIndex) {
                 playNext(index - pageIndex)
             } else if (index < pageIndex) {

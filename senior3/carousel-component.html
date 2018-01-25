@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>轮播组件</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        ul,
+        li {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .wrap {
+            position: relative;
+            margin: 100px auto;
+            width: 600px;
+            box-shadow: 0 0 4px 4px rgba(84, 242, 242, .5);
+            overflow: hidden;
+        }
+
+        .wrap .pre,
+        .wrap .next {
+            position: absolute;
+            font-size: 3em;
+            color: rgba(255, 255, 255, .5);
+            padding: .2em;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+
+        .wrap .next {
+            right: 0;
+        }
+
+        .wrap .pre:hover,
+        .wrap .next:hover {
+            color: white;
+        }
+
+        .wrap .imgCt,
+        .wrap .bullets {
+            display: flex;
+        }
+
+        .wrap .imgCt {
+            position: relative;
+        }
+
+        img {
+            vertical-align: top;
+        }
+
+        .wrap .bullets {
+            width: 300px;
+            height: 14px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 1em;
+            justify-content: space-between;
+        }
+
+        .wrap .bullets>li {
+            width: 50px;
+            border-radius: .3em;
+            background: rgba(255, 255, 255, .5);
+            cursor: pointer;
+        }
+
+        .wrap .bullets>li.active {
+            background: white;
+        }
+    </style>
+    <script src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="wrap">
+        <ul class="imgCt">
+            <li data-index=0><a href="#"><img src="https://dummyimage.com/600x400/0bded7/fff&text=1"></a></li>
+            <li data-index=1><a href="#"><img src="https://dummyimage.com/600x400/0bded7/fff&text=2"></a></li>
+            <li data-index=2><a href="#"><img src="https://dummyimage.com/600x400/0bded7/fff&text=3"></a></li>
+            <li data-index=3><a href="#"><img src="https://dummyimage.com/600x400/0bded7/fff&text=4"></a></li>
+            <li data-index=4><a href="#"><img src="https://dummyimage.com/600x400/0bded7/fff&text=5"></a></li>
+        </ul>
+
+        <div class="pre">&lt;</div>
+        <div class="next">&gt;</div>
+
+        <ul class="bullets">
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    
+    <script>
+        function Carousel($ct) {
+            this.$ct = $ct
+            this.init()
+            this.bind()
+        }
+
+        Carousel.prototype = {
+            init() {
+                this.$imgCt = this.$ct.find('.imgCt')
+                this.$imgs = this.$imgCt.children()
+                this.$pre = this.$ct.find('.pre')
+                this.$next = this.$ct.find('.next')
+                this.$bullets = this.$ct.find('.bullets>li')
+                this.curPageIdx = 0
+                this.isAnimate = false
+                this.imgCount = this.$imgs.length
+                this.imgWidth = this.$imgCt.width()
+                // 轮播的核心：clone首图片到尾部，clone尾图片到首部
+                this.$imgCt.prepend(this.$imgs.last().clone())
+                this.$imgCt.append(this.$imgs.first().clone())
+                this.$imgCt.width(this.imgWidth * (this.imgCount + 2))
+                this.$imgCt.css({ left: -this.imgWidth })
+            },
+            bind() {
+                // 为了bullet
+                var _this = this
+                // 自动及手动轮播
+                this.autoPlay()
+                this.$pre.on('click', (e) => {
+                    e.preventDefault()
+                    this.playPre(1)
+                })
+                this.$next.on('click', (e) => {
+                    e.preventDefault()
+                    this.playNext(1)
+                })
+                // 鼠标悬停在图片上停止轮播，鼠标离开图片继续自动轮播
+                this.$imgCt.on('mouseenter', () => {
+                    window.clearInterval(this.timerId)
+                }).on('mouseleave', () => {
+                    this.autoPlay()
+                })
+                // 点击bullet跳到对应图片，用箭头函数会绑定this，无法获取到curPageIdx
+                this.$bullets.click(function () {
+                    // console.log(this.$bullets)
+                    // console.log($(this))
+                    // console.log(this.curPageIdx)
+                    // console.log(_this)
+                    var index = $(this).index()
+                    // console.log(index)
+                    
+                    if (index > _this.curPageIdx) {
+                        _this.playNext(index - _this.curPageIdx)
+                    } else if (index < _this.curPageIdx) {
+                        _this.playPre(_this.curPageIdx - index)
+                    }
+                })
+            },
+            playPre(len) {
+                if (this.isAnimate) return
+                this.isAnimate = true
+                this.$imgCt.animate({
+                    left: '+=' + len * this.imgWidth
+                }, () => {
+                    this.curPageIdx -= len
+                    if (this.curPageIdx < 0) {
+                        this.curPageIdx = this.imgCount - 1
+                        this.$imgCt.css({ left: -this.imgCount * this.imgWidth })
+                    }
+                    this.setBullet()
+                    this.isAnimate = false
+                })
+            },
+            playNext(len) {
+                if (this.isAnimate) return
+                this.isAnimate = true
+                this.$imgCt.animate({
+                    left: '-=' + len * this.imgWidth
+                }, () => {
+                    this.curPageIdx += len
+                    if (this.curPageIdx === this.imgCount) {
+                        this.curPageIdx = 0
+                        this.$imgCt.css({ left: -this.imgWidth })
+                    }
+                    this.setBullet()
+                    this.isAnimate = false
+                })
+            },
+            setBullet() {
+                this.$bullets.removeClass('active')
+                    .eq(this.curPageIdx)
+                    .addClass('active')
+            },
+            autoPlay() {
+                this.timerId = setInterval(() => {
+                    this.playNext(1)
+                    // console.log(Date.now())
+                }, 1500)
+            }
+        }
+
+        new Carousel($('.wrap'))
+    </script>
+</body>
+
+</html>

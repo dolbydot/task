@@ -94,111 +94,122 @@
             <li></li>
         </ul>
     </div>
-    
+
     <script>
-        function Carousel($ct) {
-            this.$ct = $ct
-            this.init()
-            this.bind()
-        }
-
-        Carousel.prototype = {
-            init() {
-                this.$imgCt = this.$ct.find('.imgCt')
-                this.$imgs = this.$imgCt.children()
-                this.$pre = this.$ct.find('.pre')
-                this.$next = this.$ct.find('.next')
-                this.$bullets = this.$ct.find('.bullets>li')
-                this.curPageIdx = 0
-                this.isAnimate = false
-                this.imgCount = this.$imgs.length
-                this.imgWidth = this.$imgCt.width()
-                // 轮播的核心：clone首图片到尾部，clone尾图片到首部
-                this.$imgCt.prepend(this.$imgs.last().clone())
-                this.$imgCt.append(this.$imgs.first().clone())
-                this.$imgCt.width(this.imgWidth * (this.imgCount + 2))
-                this.$imgCt.css({ left: -this.imgWidth })
-            },
-            bind() {
-                // 为了bullet
-                var _this = this
-                // 自动及手动轮播
-                this.autoPlay()
-                this.$pre.on('click', (e) => {
-                    e.preventDefault()
-                    this.playPre(1)
-                })
-                this.$next.on('click', (e) => {
-                    e.preventDefault()
-                    this.playNext(1)
-                })
-                // 鼠标悬停在图片上停止轮播，鼠标离开图片继续自动轮播
-                this.$imgCt.on('mouseenter', () => {
-                    clearInterval(this.timerId)
-                }).on('mouseleave', () => {
-                    this.autoPlay()
-                })
-                // 点击bullet跳到对应图片，用箭头函数会绑定this，无法获取到curPageIdx
-                this.$bullets.click(function () {
-                    // console.log(this.$bullets)
-                    // console.log($(this))
-                    // console.log(this.curPageIdx)
-                    // console.log(_this)
-                    var index = $(this).index()
-                    // console.log(index)
-                    
-                    if (index > _this.curPageIdx) {
-                        _this.playNext(index - _this.curPageIdx)
-                    } else if (index < _this.curPageIdx) {
-                        _this.playPre(_this.curPageIdx - index)
-                    }
-                })
-            },
-            playPre(len) {
-                if (this.isAnimate) return
-                this.isAnimate = true
-                this.$imgCt.animate({
-                    left: '+=' + len * this.imgWidth
-                }, () => {
-                    this.curPageIdx -= len
-                    if (this.curPageIdx < 0) {
-                        this.curPageIdx = this.imgCount - 1
-                        this.$imgCt.css({ left: -this.imgCount * this.imgWidth })
-                    }
-                    this.setBullet()
-                    this.isAnimate = false
-                })
-            },
-            playNext(len) {
-                if (this.isAnimate) return
-                this.isAnimate = true
-                this.$imgCt.animate({
-                    left: '-=' + len * this.imgWidth
-                }, () => {
-                    this.curPageIdx += len
-                    if (this.curPageIdx === this.imgCount) {
-                        this.curPageIdx = 0
-                        this.$imgCt.css({ left: -this.imgWidth })
-                    }
-                    this.setBullet()
-                    this.isAnimate = false
-                })
-            },
-            setBullet() {
-                this.$bullets.removeClass('active')
-                    .eq(this.curPageIdx)
-                    .addClass('active')
-            },
-            autoPlay() {
-                clearInterval(this.timerId)
-                this.timerId = setInterval(() => {
-                    this.playNext(1)
-                    // console.log(Date.now())
-                }, 2000)
+        var Carousel = (function () {
+            function _Carousel($ct) {
+                this.$ct = $ct
+                this.init()
+                this.bind()
             }
-        }
 
-        new Carousel($('.wrap'))
+            _Carousel.prototype = {
+                init() {
+                    this.$imgCt = this.$ct.find('.imgCt')
+                    this.$imgs = this.$imgCt.children()
+                    this.$pre = this.$ct.find('.pre')
+                    this.$next = this.$ct.find('.next')
+                    this.$bullets = this.$ct.find('.bullets>li')
+                    this.curPageIdx = 0
+                    this.isAnimate = false
+                    this.imgCount = this.$imgs.length
+                    this.imgWidth = this.$imgCt.width()
+                    // 轮播的核心：clone首图片到尾部，clone尾图片到首部
+                    this.$imgCt.prepend(this.$imgs.last().clone())
+                    this.$imgCt.append(this.$imgs.first().clone())
+                    this.$imgCt.width(this.imgWidth * (this.imgCount + 2))
+                    this.$imgCt.css({ left: -this.imgWidth })
+                },
+                bind() {
+                    // 为了bullet
+                    var _this = this
+                    // 自动及手动轮播
+                    this.autoPlay()
+                    this.$pre.on('click', (e) => {
+                        e.preventDefault()
+                        this.playPre(1)
+                    })
+                    this.$next.on('click', (e) => {
+                        e.preventDefault()
+                        this.playNext(1)
+                    })
+                    // 鼠标悬停在图片上停止轮播，鼠标离开图片继续自动轮播
+                    this.$imgCt.on('mouseenter', () => {
+                        clearInterval(this.timerId)
+                    }).on('mouseleave', () => {
+                        this.autoPlay()
+                    })
+                    // 点击bullet跳到对应图片，用箭头函数会绑定this，无法获取到curPageIdx
+                    this.$bullets.click(function () {
+                        // console.log(this.$bullets)
+                        // console.log($(this))
+                        // console.log(this.curPageIdx)
+                        // console.log(_this)
+                        var index = $(this).index()
+                        // console.log(index)
+
+                        if (index > _this.curPageIdx) {
+                            _this.playNext(index - _this.curPageIdx)
+                        } else if (index < _this.curPageIdx) {
+                            _this.playPre(_this.curPageIdx - index)
+                        }
+                    })
+                },
+                playPre(len) {
+                    if (this.isAnimate) return
+                    this.isAnimate = true
+                    this.$imgCt.animate({
+                        left: '+=' + len * this.imgWidth
+                    }, () => {
+                        this.curPageIdx -= len
+                        if (this.curPageIdx < 0) {
+                            this.curPageIdx = this.imgCount - 1
+                            this.$imgCt.css({ left: -this.imgCount * this.imgWidth })
+                        }
+                        this.setBullet()
+                        this.isAnimate = false
+                    })
+                },
+                playNext(len) {
+                    if (this.isAnimate) return
+                    this.isAnimate = true
+                    this.$imgCt.animate({
+                        left: '-=' + len * this.imgWidth
+                    }, () => {
+                        this.curPageIdx += len
+                        if (this.curPageIdx === this.imgCount) {
+                            this.curPageIdx = 0
+                            this.$imgCt.css({ left: -this.imgWidth })
+                        }
+                        this.setBullet()
+                        this.isAnimate = false
+                    })
+                },
+                setBullet() {
+                    this.$bullets.removeClass('active')
+                        .eq(this.curPageIdx)
+                        .addClass('active')
+                },
+                autoPlay() {
+                    clearInterval(this.timerId)
+                    this.timerId = setInterval(() => {
+                        this.playNext(1)
+                        // console.log(Date.now())
+                    }, 2000)
+                }
+            }
+
+            return {
+                init($ct) {
+                    $ct.each((index, node) => {
+                        new _Carousel($(node))
+                    })
+                }
+            }
+        })()
+
+        // 启动方式
+        Carousel.init($('.wrap'))
     </script>
 </body>
 

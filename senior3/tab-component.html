@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>tab组件</title>
+    <link rel="stylesheet" href="./common.css">
+    <style>
+        .container {
+            border: 1px solid black;
+            width: 400px;
+            margin: 20px auto;
+        }
+
+        .container>.tab {
+            border-bottom: 1px solid black;
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            line-height: 35px;
+        }
+
+        .tab>li {
+            border-right: 1px solid black;
+            flex-grow: 1;
+            cursor: pointer;
+        }
+
+        .tab>li:last-child {
+            border: none;
+        }
+
+        .tab>li.active {
+            background: #ccc;
+        }
+
+        .container>.content {
+            padding: 10px;
+        }
+
+        .content>li {
+            height: 200px;
+            display: none;
+        }
+
+        .content>li.active {
+            display: block
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <ul class="tab">
+            <li class="active">tab 1</li>
+            <li>tab 2</li>
+            <li>tab 3</li>
+            <li>tab 4</li>
+        </ul>
+        <ul class="content">
+            <li class="active">content 1</li>
+            <li>content 2</li>
+            <li>content 3</li>
+            <li>content 4</li>
+        </ul>
+    </div>
+    <script>
+        function Tab(ct) {
+            this.ct = ct
+            this.init()
+            this.bind()
+        }
+
+        Tab.prototype = {
+            init() {
+                this.tabLis = this.ct.querySelectorAll('.tab>li')
+                this.tabPanels = this.ct.querySelectorAll('.content>li')
+            },
+            bind() {
+                this.tabLis.forEach((tabLi) => {
+                    var _this = this
+                    tabLi.onclick = function (e) {
+                        var target = e.target
+                        // console.log(target)
+                        // console.log(_this.tabLis)
+                        var index = [].indexOf.call(_this.tabLis, target)
+                        _this.tabLis.forEach((li) => {
+                            li.classList.remove('active')
+                        })
+                        target.classList.add('active')
+
+                        _this.tabPanels.forEach((li) => {
+                            li.classList.remove('active')
+                        })
+                        _this.tabPanels[index].classList.add('active')
+                    }
+
+                })
+            },
+        }
+
+        new Tab(document.querySelector('.container'))
+    </script>
+</body>
+
+</html>

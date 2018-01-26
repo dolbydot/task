@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>宽度固定高度随机瀑布流</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            height: 100%
+        }
+
+        .content {
+            position: relative;
+        }
+
+        .content .item {
+            position: absolute;
+            width: 200px;
+            margin-top: 10px;
+            margin-left: 10px;
+            transition: all 1.5s;
+        }
+
+        .content .height1 {
+            height: 200px;
+            background: #9ff;
+        }
+
+        .content .height2 {
+            height: 500px;
+            background: #9cf;
+        }
+
+        .content .height3 {
+            height: 600px;
+            background: #99f;
+        }
+
+        .content .height4 {
+            height: 400px;
+            background: #96f;
+        }
+
+        .content .height5 {
+            height: 300px;
+            background: #93f;
+        }
+
+        .content .height6 {
+            height: 700px;
+            background: #90f;
+        }
+    </style>
+    <script src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="content">
+        <div class="item height1">1</div>
+        <div class="item height4">2</div>
+        <div class="item height5">3</div>
+        <div class="item height2">4</div>
+        <div class="item height4">5</div>
+        <div class="item height1">6</div>
+        <div class="item height6">7</div>
+        <div class="item height4">8</div>
+        <div class="item height5">9</div>
+        <div class="item height5">10</div>
+        <div class="item height2">11</div>
+        <div class="item height2">12</div>
+        <div class="item height3">13</div>
+        <div class="item height1">14</div>
+        <div class="item height3">15</div>
+        <div class="item height1">16</div>
+        <div class="item height5">17</div>
+        <div class="item height3">18</div>
+        <div class="item height2">19</div>
+        <div class="item height2">20</div>
+        <div class="item height1">21</div>
+        <div class="item height3">22</div>
+        <div class="item height1">23</div>
+        <div class="item height4">24</div>
+        <div class="item height3">25</div>
+        <div class="item height2">26</div>
+        <div class="item height6">27</div>
+        <div class="item height3">28</div>
+        <div class="item height2">29</div>
+        <div class="item height5">30</div>
+    </div>
+
+    <script>
+        var waterFall = (function () {
+            function WaterFall() {
+                this.init()
+                this.waterfall()
+            }
+
+            WaterFall.prototype = {
+                init() {
+                    this.waterfall()//首次打开页面自动按照窗口大小进行排列
+                    $(window).resize(() => {
+                        this.waterfall()//窗口发生变化时自动重排
+                    })
+                },
+                waterfall() {
+                    var cloLength = parseInt($('.content').width() / $('.item').outerWidth(true))//几列
+                    var itemArr = []//首先定义一个空数组，项数为列数，初始化数组中的每一项值为0
+                    for (var i = 0; i < cloLength; i++) {
+                        itemArr[i] = 0
+                    }
+
+                    $('.item').each(function () {//遍历每一个子div
+                        var minVal = Math.min.apply(null, itemArr)//得到数组中的最小值，即第一排div按照写的顺序排列
+                        var minIdx = itemArr.indexOf(minVal)//得到最小值的索引（下标）
+                        //对每一个子div执行以下操作
+                        $(this).css({
+                            //第一排的每一项top:0
+                            top: itemArr[minIdx],
+                            //第一排依次left:outerWidth(true)*0，left:outerWidth(true)*1,(包括padding，border，margin),left:outerWidth(true)*2,直到第一排末尾left:outerWidth(true)*(cloLength-1)
+                            left: $(this).outerWidth(true) * minIdx
+                        })
+                        //此时第二排开始增加元素，即按列增加，列的高度发生了变化，找到高度最小项的索引，并在该索引项下增加outerHeight(true),接着在剩余索引中找到高度最小项，再增加下一元素
+                        itemArr[minIdx] += $(this).outerHeight(true)
+                    })
+                }
+            }
+            return {
+                init() { new WaterFall() }
+            }
+        })()
+        waterFall.init()
+        //以上排列的项是按在代码中出现的顺序进行增加的，但增加的位置是按照前一排中最小值的索引来计算的。
+        //通俗来说，我按顺序依次渲染到页面，但它不一定按从左到右依次排列。
+    </script>
+</body>
+
+</html>
